@@ -6,10 +6,19 @@
     <description>Recent content on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 17 Mar 2020 20:25:55 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 18 Mar 2020 10:19:55 +0900</lastBuildDate>
     
 	<atom:link href="https://spacevveasel.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>4</title>
+      <link>https://spacevveasel.github.io/test/4/</link>
+      <pubDate>Wed, 18 Mar 2020 10:19:55 +0900</pubDate>
+      
+      <guid>https://spacevveasel.github.io/test/4/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>3</title>
