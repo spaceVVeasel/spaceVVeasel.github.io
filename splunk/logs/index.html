@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>My New Hugo Site :: My New Hugo Site</title>
+    <title>Logs :: My New Hugo Site</title>
 
     
     <link href="/css/nucleus.css?1584522134" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/splunk/logs/">
     <nav id="sidebar" class="">
 
 
@@ -94,7 +94,7 @@
   
     
     <li data-nav-id="/splunk/" title="Splunk" class="dd-item 
-        
+        parent
         
         
         ">
@@ -123,8 +123,8 @@
   
     
     <li data-nav-id="/splunk/logs/" title="Logs" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/splunk/logs/">
@@ -168,33 +168,118 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>My New Hugo Site</a> > <a href='/splunk/'>Splunk</a> > Logs
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#splunk-_internalログに関するページ">Splunk _internalログに関するページ</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Logs
+            </h1>
+          
 
         
 
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
-           
+
+	<h3 id="splunk-_internalログに関するページ">Splunk _internalログに関するページ</h3>
+<p>splunkの_internalログはComponentフィールドを確認することで分類できる。</p>
+<ul>
+<li>
+<p>Metrics<br>
+リソースの使用状況に関するログ。<br>
+groupによってさらに分類され、各機能の稼働状況を記録する</p>
+<ul>
+<li>
+<p>bucket_metrics<br>
+バケツの状況に関するログ。<br>
+現在のhotバケツの数などが確認できる。</p>
+</li>
+<li>
+<p>searchscheduler<br>
+Schduling Searchesの状況に関するログ。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>IniFile<br>
+設定ファイルに関するログ。<br>
+設定ファイルのフォーマットの記載ミス等を表示すると思われる。<br>
+Splunkの起動時等(おそらく設定ファイルの読み込み時)に出力される。</p>
+</li>
+<li>
+<p>TailReader<br>
+モニタリングしているファイルの末尾に関するログ。</p>
+</li>
+</ul>
+
+
+
+
+
+<footer class=" footline" >
 	
-		<h1>Customize your own home page</h1>
-		<p>
-		  The site is working. Don't forget to customize this homepage with your own. You typically have 3 choices :
-		</p>
-		<ul>
-			<li><b>1. </b> Create an _index.md document in <b>content</b> folder and fill it with Markdown content</li>
-			<li><b>2. </b> Create an <b>index.html</b> file in the <b>static</b> folder and fill the file with HTML content</li>
-		  <li><b>3. </b> Configure your server to automatically redirect home page to one your documentation page</li>
-		</ul>
-	
-  
+</footer>
+
         
         </div> 
         
@@ -226,8 +311,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -243,6 +326,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -267,8 +351,8 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/splunk/" title="Splunk"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/splunk/" title="Splunk" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -298,4 +382,3 @@
 
   </body>
 </html>
-
