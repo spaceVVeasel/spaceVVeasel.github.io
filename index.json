@@ -1,0 +1,36 @@
+[
+{
+	"uri": "https://spacevveasel.github.io/splunk/logs/",
+	"title": "Logs",
+	"tags": [],
+	"description": "",
+	"content": "Splunk _internalログに関するページ splunkの_internalログはComponentフィールドを確認することで分類できる。\n  Metrics\nリソースの使用状況に関するログ。\ngroupによってさらに分類され、各機能の稼働状況を記録する\n  bucket_metrics\nバケツの状況に関するログ。\n現在のhotバケツの数などが確認できる。\n  searchscheduler\nSchduling Searchesの状況に関するログ。\n    IniFile\n設定ファイルに関するログ。\n設定ファイルのフォーマットの記載ミス等を表示すると思われる。\nSplunkの起動時等(おそらく設定ファイルの読み込み時)に出力される。\n  TailReader\nモニタリングしているファイルの末尾に関するログ。\n  "
+},
+{
+	"uri": "https://spacevveasel.github.io/",
+	"title": "Top Page",
+	"tags": [],
+	"description": "",
+	"content": "宇宙イタチのメモ 日々、得た知識を定期的にメモとして残すためのWikiのようなもの\n"
+},
+{
+	"uri": "https://spacevveasel.github.io/splunk/",
+	"title": "Splunk",
+	"tags": [],
+	"description": "",
+	"content": "Splunkに関する個人的メモ  Configs\n.confファイルに関するメモ Logs\nログに関するメモ Tips\nその他未分類のメモ  "
+},
+{
+	"uri": "https://spacevveasel.github.io/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "https://spacevveasel.github.io/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]
