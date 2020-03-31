@@ -12,18 +12,18 @@
     <title>Logs :: 宇宙イタチのメモ</title>
 
     
-    <link href="/css/nucleus.css?1584672526" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1584672526" rel="stylesheet">
-    <link href="/css/hybrid.css?1584672526" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1584672526" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1584672526" rel="stylesheet">
-    <link href="/css/auto-complete.css?1584672526" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1584672526" rel="stylesheet">
-    <link href="/css/theme.css?1584672526" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1584672526" rel="stylesheet">
+    <link href="/css/nucleus.css?1585648660" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1585648660" rel="stylesheet">
+    <link href="/css/hybrid.css?1585648660" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1585648660" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1585648660" rel="stylesheet">
+    <link href="/css/auto-complete.css?1585648660" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1585648660" rel="stylesheet">
+    <link href="/css/theme.css?1585648660" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1585648660" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1584672526"></script>
+    <script src="/js/jquery-3.3.1.min.js?1585648660"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -68,14 +68,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1584672526"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1584672526"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1585648660"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1585648660"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/spacevveasel.github.io\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1584672526"></script>
+<script type="text/javascript" src="/js/search.js?1585648660"></script>
 
     
   </div>
@@ -122,6 +122,63 @@
  
   
     
+    <li data-nav-id="/splunk/configs/" title="Configs" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/splunk/configs/">
+          Configs
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/splunk/configs/savedsearches/" title="Savedsearches" class="dd-item ">
+        <a href="/splunk/configs/savedsearches/">
+        Savedsearches
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
     <li data-nav-id="/splunk/logs/" title="Logs" class="dd-item 
         parent
         active
@@ -129,6 +186,32 @@
         ">
       <a href="/splunk/logs/">
           Logs
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/splunk/tips/" title="Tips" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/splunk/tips/">
+          Tips
           
       </a>
       
@@ -212,7 +295,8 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#splunk-_internalログに関するページ">Splunk _internalログに関するページ</a></li>
+        <li><a href="#_internalログに関するページ">_internalログに関するページ</a></li>
+        <li><a href="#_introspectionログに関するページ">_introspectionログに関するページ</a></li>
       </ul>
     </li>
   </ul>
@@ -241,35 +325,62 @@
 
 
 
-	<h3 id="splunk-_internalログに関するページ">Splunk _internalログに関するページ</h3>
+	<h3 id="_internalログに関するページ">_internalログに関するページ</h3>
 <p>splunkの_internalログはComponentフィールドを確認することで分類できる。</p>
 <ul>
 <li>
-<p>Metrics<br>
+<p><strong>Metrics</strong><br>
 リソースの使用状況に関するログ。<br>
 groupによってさらに分類され、各機能の稼働状況を記録する</p>
 <ul>
 <li>
-<p>bucket_metrics<br>
+<p><strong>bucket_metrics</strong><br>
 バケツの状況に関するログ。<br>
 現在のhotバケツの数などが確認できる。</p>
 </li>
 <li>
-<p>searchscheduler<br>
-Schduling Searchesの状況に関するログ。</p>
+<p><strong>searchscheduler</strong><br>
+Scheduling Searchesの状況に関するログ。<br>
+eligible : 実行予定のサーチ数<br>
+delayed : 遅延したサーチ数<br>
+dispatched : 実行されたサーチ数<br>
+suppressed : 抑制されえたサーチ数</p>
 </li>
 </ul>
 </li>
 <li>
-<p>IniFile<br>
+<p><strong>DeployedServerclass</strong><br>
+ForwarderManagementに関するログ。<br>
+Forwarderに配布したAppsの更新・削除等のログが出力される。</p>
+</li>
+<li>
+<p><strong>IniFile</strong><br>
 設定ファイルに関するログ。<br>
 設定ファイルのフォーマットの記載ミス等を表示すると思われる。<br>
 Splunkの起動時等(おそらく設定ファイルの読み込み時)に出力される。</p>
 </li>
 <li>
-<p>TailReader<br>
+<p><strong>TailReader</strong><br>
 モニタリングしているファイルの末尾に関するログ。</p>
 </li>
+<li>
+<p><strong>SavedSplunker</strong><br>
+アラートに関するログ。<br>
+アラートの実行時・終了時に出力される。<br>
+scheduled_time(実行予定時間) : &lt;epoch_time&gt;<br>
+dispatch_time(実行時間) : &lt;epoch_time&gt;<br>
+status(実行結果) : (success|skipped)<br>
+suppressed(アラートの抑制結果) :(0|1)</p>
+</li>
+</ul>
+<h3 id="_introspectionログに関するページ">_introspectionログに関するページ</h3>
+<p>splunkの_introspectionログはComponentフィールドを確認することで分類できる。</p>
+<ul>
+<li><strong>Partitions</strong>
+disk容量に関するログ。
+data.capacity :
+data.free :
+data.available :</li>
 </ul>
 
 
@@ -327,6 +438,60 @@ Splunkの起動時等(おそらく設定ファイルの読み込み時)に出力
             
                 
                     
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -351,8 +516,10 @@ Splunkの起動時等(おそらく設定ファイルの読み込み時)に出力
 	 
 	 
 		
-			<a class="nav nav-prev" href="/splunk/" title="Splunk"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/splunk/configs/savedsearches/" title="Savedsearches"> <i class="fa fa-chevron-left"></i></a>
 		
+		
+			<a class="nav nav-next" href="/splunk/tips/" title="Tips" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -362,19 +529,19 @@ Splunkの起動時等(おそらく設定ファイルの読み込み時)に出力
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1584672526"></script>
-    <script src="/js/perfect-scrollbar.min.js?1584672526"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1584672526"></script>
-    <script src="/js/jquery.sticky.js?1584672526"></script>
-    <script src="/js/featherlight.min.js?1584672526"></script>
-    <script src="/js/highlight.pack.js?1584672526"></script>
+    <script src="/js/clipboard.min.js?1585648660"></script>
+    <script src="/js/perfect-scrollbar.min.js?1585648660"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1585648660"></script>
+    <script src="/js/jquery.sticky.js?1585648660"></script>
+    <script src="/js/featherlight.min.js?1585648660"></script>
+    <script src="/js/highlight.pack.js?1585648660"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1584672526"></script>
-    <script src="/js/learn.js?1584672526"></script>
-    <script src="/js/hugo-learn.js?1584672526"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1585648660"></script>
+    <script src="/js/learn.js?1585648660"></script>
+    <script src="/js/hugo-learn.js?1585648660"></script>
 
-    <link href="/mermaid/mermaid.css?1584672526" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1584672526"></script>
+    <link href="/mermaid/mermaid.css?1585648660" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1585648660"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

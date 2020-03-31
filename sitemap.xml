@@ -3,8 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://spacevveasel.github.io/splunk/configs/</loc>
+    <lastmod>2020-03-18T16:49:23+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://spacevveasel.github.io/splunk/logs/</loc>
     <lastmod>2020-03-18T12:21:34+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://spacevveasel.github.io/splunk/tips/</loc>
+    <lastmod>2020-03-18T16:48:30+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://spacevveasel.github.io/splunk/configs/savedsearches/</loc>
+    <lastmod>2020-03-21T17:14:08+09:00</lastmod>
   </url>
   
   <url>

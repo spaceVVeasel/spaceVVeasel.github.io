@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Top Page on 宇宙イタチのメモ</title>
-    <link>https://spacevveasel.github.io/</link>
-    <description>Recent content in Top Page on 宇宙イタチのメモ</description>
+    <title>Configs on 宇宙イタチのメモ</title>
+    <link>https://spacevveasel.github.io/splunk/configs/</link>
+    <description>Recent content in Configs on 宇宙イタチのメモ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 19 Mar 2020 17:28:40 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 18 Mar 2020 16:49:23 +0900</lastBuildDate>
     
-	<atom:link href="https://spacevveasel.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://spacevveasel.github.io/splunk/configs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

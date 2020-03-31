@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Splunk :: 宇宙イタチのメモ</title>
+    <title>Tips :: 宇宙イタチのメモ</title>
 
     
     <link href="/css/nucleus.css?1585648660" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/splunk/">
+  <body class="" data-url="/splunk/tips/">
     <nav id="sidebar" class="">
 
 
@@ -95,7 +95,7 @@
     
     <li data-nav-id="/splunk/" title="Splunk" class="dd-item 
         parent
-        active
+        
         
         ">
       <a href="/splunk/">
@@ -206,8 +206,8 @@
   
     
     <li data-nav-id="/splunk/tips/" title="Tips" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/splunk/tips/">
@@ -274,7 +274,13 @@
             
           
           
-            <a href='/'>Top Page</a> > Splunk
+            
+            
+          
+          
+            <a href='/'>Top Page</a> > <a href='/splunk/'>Splunk</a> > Tips
+          
+         
           
          
           
@@ -289,7 +295,8 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#splunkに関する個人的メモ">Splunkに関する個人的メモ</a></li>
+        <li><a href="#rest-api-を用いた設定ファイルの更新">REST API を用いた設定ファイルの更新</a></li>
+        <li><a href="#misc">MISC</a></li>
       </ul>
     </li>
   </ul>
@@ -309,7 +316,7 @@
           
             <h1>
               
-              Splunk
+              Tips
             </h1>
           
 
@@ -318,14 +325,24 @@
 
 
 
-	<h3 id="splunkに関する個人的メモ">Splunkに関する個人的メモ</h3>
+	<h3 id="rest-api-を用いた設定ファイルの更新">REST API を用いた設定ファイルの更新</h3>
+<p>Appsの更新<br>
+<code>curl -k -u admin:&lt;password&gt; https://localhost:8089/sercicesNS/nobody/system/apps/local/&lt;app&gt;/_reload</code></p>
+<p>フィールド抽出に関する設定の更新<br>
+<code>curl -k -u admin:&lt;password&gt; https://localhost:8089/sercicesNS/nobody/&lt;app&gt;/data/props/extractions/_reload</code></p>
+<p>ファイルモニターに関する設定の更新<br>
+<code>curl -k -u admin:&lt;password&gt; https://localhost:8089/sercicesNS/nobody/&lt;app&gt;/data/inputs/monitor/_reload  </code></p>
+<h3 id="misc">MISC</h3>
 <ul>
-<li>Configs<br>
-.confファイルに関するメモ</li>
-<li>Logs<br>
-ログに関するメモ</li>
-<li>Tips<br>
-その他未分類のメモ</li>
+<li>
+<p>現在のdisk使用量を確認する方法<br>
+以下のサーチを実行する。<br>
+<code>| rest /services/server/status/partitions-space</code></p>
+</li>
+<li>
+<p>disk使用量の推移を確認する方法<br>
+<code>index=_introspection sourcetype=splunk_disk_objects component=Partitions</code></p>
+</li>
 </ul>
 
 
@@ -434,6 +451,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -457,7 +475,7 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/" title="Top Page"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/splunk/logs/" title="Logs"> <i class="fa fa-chevron-left"></i></a>
 		
 		
 			<a class="nav nav-next" href="/splunk/configs/" title="Configs" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
