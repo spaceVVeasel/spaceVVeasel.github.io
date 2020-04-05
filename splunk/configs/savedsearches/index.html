@@ -12,18 +12,18 @@
     <title>Savedsearches :: 宇宙イタチのメモ</title>
 
     
-    <link href="/css/nucleus.css?1585648660" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1585648660" rel="stylesheet">
-    <link href="/css/hybrid.css?1585648660" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1585648660" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1585648660" rel="stylesheet">
-    <link href="/css/auto-complete.css?1585648660" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1585648660" rel="stylesheet">
-    <link href="/css/theme.css?1585648660" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1585648660" rel="stylesheet">
+    <link href="/css/nucleus.css?1586079017" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1586079017" rel="stylesheet">
+    <link href="/css/hybrid.css?1586079017" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1586079017" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1586079017" rel="stylesheet">
+    <link href="/css/auto-complete.css?1586079017" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1586079017" rel="stylesheet">
+    <link href="/css/theme.css?1586079017" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1586079017" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1585648660"></script>
+    <script src="/js/jquery-3.3.1.min.js?1586079017"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -68,14 +68,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1585648660"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1585648660"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1586079017"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1586079017"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/spacevveasel.github.io\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1585648660"></script>
+<script type="text/javascript" src="/js/search.js?1586079017"></script>
 
     
   </div>
@@ -84,6 +84,54 @@
     <ul class="topics">
 
         
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/misc/" title="Misc" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/misc/">
+          Misc
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/linux/" title="Linux" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/linux/">
+          Linux
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
           
           
 
@@ -361,12 +409,14 @@
 　　Set the type of count for alerting.<br>
 　　　　Used with the &lsquo;relation&rsquo; and &lsquo;quantity&rsquo; settings.<br>
 　　　　NOTE: If you specify &ldquo;always,&rdquo; do not set &lsquo;relation&rsquo; or &lsquo;quantity&rsquo;.<br>
-　　　　Default: always</p>
+　　　　Default: always<br>
+　　&ldquo;relation&rdquo;、&ldquo;quantity&quot;とセットで用いる。</p>
 </li>
 <li>
 <p><strong>relation = [ greater than | less than | equal to | not equal to | drops by | rises by ]</strong><br>
 　　Specifies how to compare against &lsquo;counttype&rsquo;.<br>
-　　Default: empty string</p>
+　　Default: empty string
+　　&ldquo;counttype&rdquo;、&ldquo;quantity&quot;とセットで用いる。</p>
 </li>
 <li>
 <p><strong>quantity = &lt;integer&gt;</strong><br>
@@ -375,7 +425,10 @@
 　　Think of it as a sentence constructed like this: <!-- raw HTML omitted --> <!-- raw HTML omitted --> <!-- raw HTML omitted -->.<br>
 　　　　For example, &ldquo;number of events [is] greater than 10&rdquo; sends an alert when the count of events is larger than by 10.<br>
 　　　　For example, &ldquo;number of events drops by 10%&rdquo; sends an alert when the count of events drops by 10%.<br>
-　　Default: empty string</p>
+　　Default: empty string<br>
+　　&ldquo;counttype&rdquo;、&ldquo;relation&quot;とセットで用いる。<br>
+　　イメージとしては、<!-- raw HTML omitted --> <!-- raw HTML omitted --> <!-- raw HTML omitted -->.<br>
+　　アラートの発砲条件として、設定する。</p>
 </li>
 <li>
 <p><strong>action.summary_index = 0 | 1</strong><br>
@@ -444,7 +497,7 @@
 　　　　false - disable alert tracking for this search.<br>
 　　Default: auto<br>
 　　アラートを追跡するかどうか設定する。<br>
-　　設定が auto の場合、counttype の値が always の時は追跡しない。</p>
+　　この設定が auto の場合、counttype の設定値が always の時は追跡しない。</p>
 </li>
 </ul>
 
@@ -478,6 +531,41 @@
                     
                     
 
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
                     
                         
             
@@ -589,19 +677,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1585648660"></script>
-    <script src="/js/perfect-scrollbar.min.js?1585648660"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1585648660"></script>
-    <script src="/js/jquery.sticky.js?1585648660"></script>
-    <script src="/js/featherlight.min.js?1585648660"></script>
-    <script src="/js/highlight.pack.js?1585648660"></script>
+    <script src="/js/clipboard.min.js?1586079017"></script>
+    <script src="/js/perfect-scrollbar.min.js?1586079017"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1586079017"></script>
+    <script src="/js/jquery.sticky.js?1586079017"></script>
+    <script src="/js/featherlight.min.js?1586079017"></script>
+    <script src="/js/highlight.pack.js?1586079017"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1585648660"></script>
-    <script src="/js/learn.js?1585648660"></script>
-    <script src="/js/hugo-learn.js?1585648660"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1586079017"></script>
+    <script src="/js/learn.js?1586079017"></script>
+    <script src="/js/hugo-learn.js?1586079017"></script>
 
-    <link href="/mermaid/mermaid.css?1585648660" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1585648660"></script>
+    <link href="/mermaid/mermaid.css?1586079017" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1586079017"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

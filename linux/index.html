@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: 宇宙イタチのメモ</title>
+    <title>Linux :: 宇宙イタチのメモ</title>
 
     
     <link href="/css/nucleus.css?1586079017" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/linux/">
     <nav id="sidebar" class="">
 
 
@@ -118,8 +118,8 @@
   
     
     <li data-nav-id="/linux/" title="Linux" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/linux/">
@@ -322,7 +322,7 @@
             
           
           
-            <a href='/'>Top Page</a> > Tags
+            <a href='/'>Top Page</a> > Linux
           
          
           
@@ -333,7 +333,15 @@
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#logrotateの処理順">logrotateの処理順</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -349,7 +357,7 @@
           
             <h1>
               
-              Tags
+              Linux
             </h1>
           
 
@@ -358,11 +366,25 @@
 
 
 
+	<h3 id="logrotateの処理順">logrotateの処理順</h3>
+<ol>
+<li>firstaction/endscriptの実行</li>
+<li>ローテーション済みファイルのローテーション<br>
+(例：test.1.gz-&gt;test.2.gz)</li>
+<li>prerotate/endscriptの実行</li>
+<li>対象ファイルのローテーション(例：test-&gt;test.1)</li>
+<li>postrotate/endscriptの実行</li>
+<li>ファイルの圧縮(例：test.1-&gt;test.1.gz)</li>
+<li>preremove/endscriptの実行※</li>
+<li>圧縮元ファイルの削除(例：test.1の削除)※</li>
+<li>preremove/endscriptの実行※</li>
+<li>期限切れファイルの削除(例：test.3.gzの削除)※</li>
+<li>lastaction/endscriptの実行</li>
+</ol>
+<p>※preremoveはローテーション対象ファイル数分、繰り返し実行される。</p>
 
 
-<ul>
-	
-</ul>
+
 
 
 <footer class=" footline" >
@@ -419,6 +441,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -434,6 +457,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -521,8 +547,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/misc/" title="Misc"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/misc/" title="Misc" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/splunk/" title="Splunk" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
