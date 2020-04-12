@@ -4,21 +4,28 @@
 	"title": "Configs",
 	"tags": [],
 	"description": "",
-	"content": ""
+	"content": "macros.conf "
 },
 {
 	"uri": "https://spacevveasel.github.io/splunk/logs/",
 	"title": "Logs",
 	"tags": [],
 	"description": "",
-	"content": "_internalログに関するページ splunkの_internalログはComponentフィールドを確認することで分類できる。\n  Metrics\nリソースの使用状況に関するログ。\ngroupによってさらに分類され、各機能の稼働状況を記録する\n  bucket_metrics\nバケツの状況に関するログ。\n現在のhotバケツの数などが確認できる。\n  searchscheduler\nScheduling Searchesの状況に関するログ。\neligible : 実行予定のサーチ数\ndelayed : 遅延したサーチ数\ndispatched : 実行されたサーチ数\nsuppressed : 抑制されえたサーチ数\n    BucketMover\nFrozenBucketへの移行に関するログ。\nFrozen状態に移行する理由や、移行したバケツ情報のログが出力される。\n  HotBucketRoller\nHotBucketからの移行に関するログ。\nHotから移行したバケツ情報のログが出力される。\n  DeployedServerclass\nForwarderManagementに関するログ。\nForwarderに配布したAppsの更新・削除等のログが出力される。\n  IniFile\n設定ファイルに関するログ。\n設定ファイルのフォーマットの記載ミス等を表示すると思われる。\nSplunkの起動時等(おそらく設定ファイルの読み込み時)に出力される。\n  TailReader\nモニタリングしているファイルの末尾に関するログ。\n  SavedSplunker\nアラートに関するログ。\nアラートの実行時・終了時に出力される。\nscheduled_time(実行予定時間) : \u0026lt;epoch_time\u0026gt;\ndispatch_time(実行時間) : \u0026lt;epoch_time\u0026gt;\nstatus(実行結果) : (success|skipped)\nsuppressed(アラートの抑制結果) :(0|1)\n  _introspectionログに関するページ splunkの_introspectionログはComponentフィールドを確認することで分類できる。\n Partitions disk容量に関するログ。 data.capacity : data.free : data.available :  "
+	"content": "_internalログ splunkの_internalログはComponentフィールドを確認することで分類できる。\n  Metrics\nリソースの使用状況に関するログ。\ngroupによってさらに分類され、各機能の稼働状況を記録する\n  bucket_metrics\nバケツの状況に関するログ。\n現在のhotバケツの数などが確認できる。\n  searchscheduler\nScheduling Searchesの状況に関するログ。\neligible : 実行予定のサーチ数\ndelayed : 遅延したサーチ数\ndispatched : 実行されたサーチ数\nsuppressed : 抑制されえたサーチ数\n    BucketMover\nFrozenBucketへの移行に関するログ。\nFrozen状態に移行する理由や、移行したバケツ情報のログが出力される。\n  HotBucketRoller\nHotBucketからの移行に関するログ。\nHotから移行したバケツ情報のログが出力される。\n  DeployedServerclass\nForwarderManagementに関するログ。\nForwarderに配布したAppsの更新・削除等のログが出力される。\n  IniFile\n設定ファイルに関するログ。\n設定ファイルのフォーマットの記載ミス等を表示すると思われる。\nSplunkの起動時等(おそらく設定ファイルの読み込み時)に出力される。\n  TailReader\nモニタリングしているファイルの末尾に関するログ。\n  SavedSplunker\nアラートに関するログ。\nアラートの実行時・終了時に出力される。\nscheduled_time(実行予定時間) : \u0026lt;epoch_time\u0026gt;\ndispatch_time(実行時間) : \u0026lt;epoch_time\u0026gt;\nstatus(実行結果) : (success|skipped)\nsuppressed(アラートの抑制結果) :(0|1)\n  _introspectionログ splunkの_introspectionログはComponentフィールドを確認することで分類できる。\nまた、ログに記載される情報はSPLUNK REST API の実行結果と思われる。\n  Partitions\nPartitionの容量に関するログ。\ncapacity : ディスクの最大容量\nfree : ディスクの空き容量\navailable : ディスクの利用可能容量\nrest command : |rest /services/server/status/partitions-space\n  Volumes\nVolumeの容量に関するログ。\nname : ボリューム名\nmax_size : ボリュームの最大値\nvolume_path: ボリュームのファイルパス\ntotal_size : ボリュームの合計値、data.max_sizeがInfiniteの場合、表示されない\nrest command : |rest /services/data/index-volumes\n  IOStats\nディスクI/Oに関するログ。\navg_total_ms : 平均実行処理数\ncpu_pct : CPU稼働率\ndevice : デバイス名\nfs_type : ファイルシステムタイプ\ninterval : サンプリング間隔\nmount_point : マウントポイント\nreads_kb_ps : 読み込み速度(kb/s)\nreads_ps : 読み込み要求\nwrites_kb_ps : 書き込み速度(kb/s)\nwrites_ps : 書き込み要求\nrest command : |rest /services/server/status/resource-usage/iostats\n  Indexes\nIndexの状態に関するログ。\nname : インデックス名\ntotal_bucket_count : バケツ数\ntotal_event_count : イベント数\ntotal_raw_size : Frozen以外のrawdataサイズ\ntotal_size : インデックスの合計サイズ\nbucket_dirs : バケツの保存ファイルパス\nbucket_count : バケツ数\nevent_count : イベント数\nevent_min_time : イベントの最小時間\nevent_max_time : イベントの最大時間\nrest command : |rest /services/data/indexes-extended\n  Hostwide\ncpu_arch : CPUアーキテクチャ\ncpu_count : CPU数\ncpu_idle_pct : CPUの未使用率\ncpu_system_pct : システムによるCPU消費率\ncpu_user_pct : ユーザによるCPU消費率\nforks : OS起動以降にフォークされた累計プロセス数\nmem : 物理メモリ容量\nmem_used : メモリ消費量(=total - free - buffer - cached)\nnormalized_load_avg_1min :\nos_build : OSバージョン\nos_name : OS名\nos_name_ext : OS名(詳細)\nos_version : OSバージョン\npg_paged_out : OS起動以降にページングされた累積ページ数\npg_swapped_out : OS起動以降にスワップされた累積ページ数\nrunnable_process_count : 実行可能なプロセス数\nsplunk_version : Splunkバージョン\nswap : スワップ領域\nswap_used : スワップ使用量\nrest command : |rest /services/server/status/resource-usage/hostwide\n  "
 },
 {
-	"uri": "https://spacevveasel.github.io/splunk/tips/",
-	"title": "Tips",
+	"uri": "https://spacevveasel.github.io/linux/",
+	"title": "Linux",
 	"tags": [],
 	"description": "",
-	"content": "REST API を用いた設定ファイルの更新 Appsの更新\ncurl -k -u admin:\u0026lt;password\u0026gt; https://localhost:8089/sercicesNS/nobody/system/apps/local/\u0026lt;app\u0026gt;/_reload\nフィールド抽出に関する設定の更新\ncurl -k -u admin:\u0026lt;password\u0026gt; https://localhost:8089/sercicesNS/nobody/\u0026lt;app\u0026gt;/data/props/extractions/_reload\nファイルモニターに関する設定の更新\ncurl -k -u admin:\u0026lt;password\u0026gt; https://localhost:8089/sercicesNS/nobody/\u0026lt;app\u0026gt;/data/inputs/monitor/_reload \nMISC   現在のdisk使用量を確認する方法\n以下のサーチを実行する。\n| rest /services/server/status/partitions-space\n  disk使用量の推移を確認する方法\nindex=_introspection sourcetype=splunk_disk_objects component=Partitions\n  "
+	"content": "logrotateの処理順  firstaction/endscriptの実行 ローテーション済みファイルのローテーション\n(例：test.1.gz-\u0026gt;test.2.gz) prerotate/endscriptの実行 対象ファイルのローテーション(例：test-\u0026gt;test.1) postrotate/endscriptの実行 ファイルの圧縮(例：test.1-\u0026gt;test.1.gz) preremove/endscriptの実行※ 圧縮元ファイルの削除(例：test.1の削除)※ preremove/endscriptの実行※ 期限切れファイルの削除(例：test.3.gzの削除)※ lastaction/endscriptの実行  ※preremoveはローテーション対象ファイル数分、繰り返し実行される。\n"
+},
+{
+	"uri": "https://spacevveasel.github.io/splunk/",
+	"title": "Splunk",
+	"tags": [],
+	"description": "",
+	"content": "Splunkに関する個人的メモ  Configs\n.confファイルに関するメモ Logs\nログに関するメモ Tips\nその他未分類のメモ  "
 },
 {
 	"uri": "https://spacevveasel.github.io/misc/",
@@ -28,11 +35,11 @@
 	"content": "Web検索ワード等の識別方法 各種検索エンジンと検索ワード、検索カテゴリの一覧\n※検索ワードにはすべてtestを使用\n   サーチエンジン 検索カテゴリ URL     Google ウェブ www.google.com/search?q=test   Google 画像 www.google.com/search?q=test\u0026amp;tbm=isch   Google ニュース www.google.com/search?q=test\u0026amp;tbm=nws   Google ショッピング www.google.com/search?q=test\u0026amp;tbm=shop   Google 地図 www.google.com/maps?q=test   Google 動画 www.google.com/search?q=test\u0026amp;tbm=vid   Google 書籍 www.google.com/search?q=test\u0026amp;tbm=bks   Google フライト www.google.com/search?q=test\u0026amp;tbm=flm   Google ファイナンス www.google.com/search?q=test\u0026amp;tbm=fin   Yahoo ウェブ search.yahoo.co.jp/search?p=test   Yahoo 画像 search.yahoo.co.jp/image/search?p=test   Yahoo 動画 search.yahoo.co.jp/video/search?p=test   Yahoo 地図 map.yahoo.co.jp/mapsearch/search?p=test   Yahoo リアルタイム search.yahoo.co.jp/realtime/search?p=test   Bing ウェブ www.bing.com/search?q=test   Bing ニュース www.bing.com/news/search?q=test   Bing 画像 www.bing.com/images/search?q=test   Bing 動画 www.bing.com/videos/search?q=test   Bing 地図 www.bing.com/maps?q=test   DuckDuckGo Web duckduckgo.com/?q=test\u0026amp;ia=web   DuckDuckGo 画像 duckduckgo.com/?q=test\u0026amp;iax=images\u0026amp;ia=images   DuckDuckGo 動画 duckduckgo.com/?q=test\u0026amp;iax=videos\u0026amp;ia=videos   DuckDuckGo ニュース duckduckgo.com/?q=test\u0026amp;iar=news\u0026amp;ia=news   DuckDuckGo 地図 duckduckgo.com/?q=test\u0026amp;iaxm=maps    "
 },
 {
-	"uri": "https://spacevveasel.github.io/linux/",
-	"title": "Linux",
+	"uri": "https://spacevveasel.github.io/splunk/tips/",
+	"title": "Tips",
 	"tags": [],
 	"description": "",
-	"content": "logrotateの処理順  firstaction/endscriptの実行 ローテーション済みファイルのローテーション\n(例：test.1.gz-\u0026gt;test.2.gz) prerotate/endscriptの実行 対象ファイルのローテーション(例：test-\u0026gt;test.1) postrotate/endscriptの実行 ファイルの圧縮(例：test.1-\u0026gt;test.1.gz) preremove/endscriptの実行※ 圧縮元ファイルの削除(例：test.1の削除)※ preremove/endscriptの実行※ 期限切れファイルの削除(例：test.3.gzの削除)※ lastaction/endscriptの実行  ※preremoveはローテーション対象ファイル数分、繰り返し実行される。\n"
+	"content": "REST API を用いた設定ファイルの更新 Appsの更新\ncurl -k -u admin:\u0026lt;password\u0026gt; https://localhost:8089/sercicesNS/nobody/system/apps/local/\u0026lt;app\u0026gt;/_reload\nフィールド抽出に関する設定の更新\ncurl -k -u admin:\u0026lt;password\u0026gt; https://localhost:8089/sercicesNS/nobody/\u0026lt;app\u0026gt;/data/props/extractions/_reload\nファイルモニターに関する設定の更新\ncurl -k -u admin:\u0026lt;password\u0026gt; https://localhost:8089/sercicesNS/nobody/\u0026lt;app\u0026gt;/data/inputs/monitor/_reload \nMISC   現在のdisk使用量を確認する方法\n以下のサーチを実行する。\n| rest /services/server/status/partitions-space\n  disk使用量の推移を確認する方法\nindex=_introspection sourcetype=splunk_disk_objects component=Partitions\n  "
 },
 {
 	"uri": "https://spacevveasel.github.io/splunk/configs/savedsearches/",
@@ -47,13 +54,6 @@
 	"tags": [],
 	"description": "",
 	"content": "宇宙イタチのメモ 日々、得た知識を定期的にメモとして残すためのWikiのようなもの\n"
-},
-{
-	"uri": "https://spacevveasel.github.io/splunk/",
-	"title": "Splunk",
-	"tags": [],
-	"description": "",
-	"content": "Splunkに関する個人的メモ  Configs\n.confファイルに関するメモ Logs\nログに関するメモ Tips\nその他未分類のメモ  "
 },
 {
 	"uri": "https://spacevveasel.github.io/categories/",

@@ -5,7 +5,7 @@
     <link>https://spacevveasel.github.io/</link>
     <description>Recent content in Top Page on 宇宙イタチのメモ</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja-JP</language>
     <lastBuildDate>Thu, 19 Mar 2020 17:28:40 +0900</lastBuildDate>
     
 	<atom:link href="https://spacevveasel.github.io/index.xml" rel="self" type="application/rss+xml" />
@@ -17,26 +17,7 @@
       <pubDate>Sat, 21 Mar 2020 17:14:08 +0900</pubDate>
       
       <guid>https://spacevveasel.github.io/splunk/configs/savedsearches/</guid>
-      <description>savedsearches.conf   search = &amp;lt;string&amp;gt;
-No default
-実行するサーチ文を入力する。
-サーチ文をconf内で改行する際は、行末に&amp;rdquo;&amp;quot;を入力する。
-  cron_schedule = &amp;lt;cron string&amp;gt;
-No default
-実行時間をcron形式で入力する。
-  schedule_priority = [ default | higher | highest ]
-The high-to-low order is:
-RTSS(H) &amp;gt; CSS(H) &amp;gt; RTSS(h) &amp;gt; RTSS(d) &amp;gt; CSS(h) &amp;gt; CSS(d)
-Where:
-RTSS = real-time-scheduled search
-CSS = continuous-scheduled search
-d = default
-h = higher
-H = highest
-Default: default
-アラートに優先度を設定する。
-本当に必要なものにだけ、設定しないと意味がなくなる。
-  counttype = [ number of events | number of hosts | number of sources | custom | always ]</description>
+      <description>savedsearches.conf search = &amp;lt;string&amp;gt; No default 実行するサーチ文を入力する。 サーチ文をconf内で改行する際は、行末に&amp;rdquo;&amp;quot;を入力する。 cron_schedule = &amp;lt;cron string&amp;gt; No default 実行時間</description>
     </item>
     
   </channel>
