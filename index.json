@@ -39,7 +39,7 @@
 	"title": "Tips",
 	"tags": [],
 	"description": "",
-	"content": "REST API を用いた設定ファイルの更新 Appsの更新\ncurl -k -u admin:\u0026lt;password\u0026gt; https://localhost:8089/sercicesNS/nobody/system/apps/local/\u0026lt;app\u0026gt;/_reload\nフィールド抽出に関する設定の更新\ncurl -k -u admin:\u0026lt;password\u0026gt; https://localhost:8089/sercicesNS/nobody/\u0026lt;app\u0026gt;/data/props/extractions/_reload\nファイルモニターに関する設定の更新\ncurl -k -u admin:\u0026lt;password\u0026gt; https://localhost:8089/sercicesNS/nobody/\u0026lt;app\u0026gt;/data/inputs/monitor/_reload \nMISC   現在のdisk使用量を確認する方法\n以下のサーチを実行する。\n| rest /services/server/status/partitions-space\n  disk使用量の推移を確認する方法\nindex=_introspection sourcetype=splunk_disk_objects component=Partitions\n  "
+	"content": "REST API を用いた設定ファイルの更新 Appsの更新\ncurl -k -u admin:\u0026lt;password\u0026gt; https://localhost:8089/sercicesNS/nobody/system/apps/local/\u0026lt;app\u0026gt;/_reload\nフィールド抽出に関する設定の更新\ncurl -k -u admin:\u0026lt;password\u0026gt; https://localhost:8089/sercicesNS/nobody/\u0026lt;app\u0026gt;/data/props/extractions/_reload\nファイルモニターに関する設定の更新\ncurl -k -u admin:\u0026lt;password\u0026gt; https://localhost:8089/sercicesNS/nobody/\u0026lt;app\u0026gt;/data/inputs/monitor/_reload \n"
 },
 {
 	"uri": "https://spacevveasel.github.io/splunk/configs/savedsearches/",
