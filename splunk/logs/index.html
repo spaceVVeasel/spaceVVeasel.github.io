@@ -12,18 +12,18 @@
     <title>Logs :: 宇宙イタチのメモ</title>
 
     
-    <link href="/css/nucleus.css?1586702910" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1586702910" rel="stylesheet">
-    <link href="/css/hybrid.css?1586702910" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1586702910" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1586702910" rel="stylesheet">
-    <link href="/css/auto-complete.css?1586702910" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1586702910" rel="stylesheet">
-    <link href="/css/theme.css?1586702910" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1586702910" rel="stylesheet">
+    <link href="/css/nucleus.css?1587480329" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1587480329" rel="stylesheet">
+    <link href="/css/hybrid.css?1587480329" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1587480329" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1587480329" rel="stylesheet">
+    <link href="/css/auto-complete.css?1587480329" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1587480329" rel="stylesheet">
+    <link href="/css/theme.css?1587480329" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1587480329" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1586702910"></script>
+    <script src="/js/jquery-3.3.1.min.js?1587480329"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -68,14 +68,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1586702910"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1586702910"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1587480329"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1587480329"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/spacevveasel.github.io\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1586702910"></script>
+<script type="text/javascript" src="/js/search.js?1587480329"></script>
 
     
   </div>
@@ -409,12 +409,21 @@ delayed : 遅延したサーチ数<br>
 dispatched : 実行されたサーチ数<br>
 suppressed : 抑制されえたサーチ数</p>
 </li>
+<li>
+<p><strong>queue</strong><br>
+nameを見ることで各種queueの状況を確認できる。<br>
+rest command : <code>|rest /services/server/introspection/queues</code></p>
+</li>
 </ul>
 </li>
 <li>
 <p><strong>BucketMover</strong><br>
-FrozenBucketへの移行に関するログ。<br>
+バケツの状態の移行(Hot -&gt; Coold,Cold-&gt;Frozen)に関するログ。<br>
 Frozen状態に移行する理由や、移行したバケツ情報のログが出力される。</p>
+<p>保存期間を過ぎたため削除された場合、以下のようなログが出力される。<br>
+will attempt to freeze: candidate='C:\Program Files\Splunk\var\lib\splunk_introspection\db\db_1566816331_1566816331_37&rsquo; because frozenTimePeriodInSecs=1209600 is exceeded by the difference between now=1587000072 and latest=1566816331</p>
+<p>保存容量を超えたため削除された場合、以下のようなログが出力される。<br>
+will attempt to freeze bkt=&quot;C:\Program Files\Splunk\var\lib\splunk\test_delete\db\db_1573496341_1570127465_0&rdquo; reason=&rdquo; maxTotalDataSize=1048576 bytes, diskSize=7081984 bytes&rdquo;</p>
 </li>
 <li>
 <p><strong>HotBucketRoller</strong><br>
@@ -477,9 +486,9 @@ fs_type : ファイルシステムタイプ<br>
 interval : サンプリング間隔<br>
 mount_point : マウントポイント<br>
 reads_kb_ps : 読み込み速度(kb/s)<br>
-reads_ps : 読み込み要求<br>
+reads_ps : 読み込み要求数<br>
 writes_kb_ps : 書き込み速度(kb/s)<br>
-writes_ps : 書き込み要求<br>
+writes_ps : 書き込み要求数<br>
 rest command : <code>|rest /services/server/status/resource-usage/iostats</code></p>
 </li>
 <li>
@@ -703,19 +712,19 @@ rest command : <code>|rest /services/server/status/resource-usage/hostwide</code
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1586702910"></script>
-    <script src="/js/perfect-scrollbar.min.js?1586702910"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1586702910"></script>
-    <script src="/js/jquery.sticky.js?1586702910"></script>
-    <script src="/js/featherlight.min.js?1586702910"></script>
-    <script src="/js/highlight.pack.js?1586702910"></script>
+    <script src="/js/clipboard.min.js?1587480329"></script>
+    <script src="/js/perfect-scrollbar.min.js?1587480329"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1587480329"></script>
+    <script src="/js/jquery.sticky.js?1587480329"></script>
+    <script src="/js/featherlight.min.js?1587480329"></script>
+    <script src="/js/highlight.pack.js?1587480329"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1586702910"></script>
-    <script src="/js/learn.js?1586702910"></script>
-    <script src="/js/hugo-learn.js?1586702910"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1587480329"></script>
+    <script src="/js/learn.js?1587480329"></script>
+    <script src="/js/hugo-learn.js?1587480329"></script>
 
-    <link href="/mermaid/mermaid.css?1586702910" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1586702910"></script>
+    <link href="/mermaid/mermaid.css?1587480329" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1587480329"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
