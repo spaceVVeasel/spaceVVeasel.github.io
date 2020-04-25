@@ -20,5 +20,14 @@
       <description>savedsearches.conf search = &amp;lt;string&amp;gt; No default 実行するサーチ文を入力する。 サーチ文をconf内で改行する際は、行末に&amp;rdquo;&amp;quot;を入力する。 cron_schedule = &amp;lt;cron string&amp;gt; No default 実行時間</description>
     </item>
     
+    <item>
+      <title>1</title>
+      <link>https://spacevveasel.github.io/splunk/logs/1/</link>
+      <pubDate>Wed, 18 Mar 2020 12:11:32 +0900</pubDate>
+      
+      <guid>https://spacevveasel.github.io/splunk/logs/1/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
