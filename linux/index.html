@@ -12,18 +12,18 @@
     <title>Linux :: 宇宙イタチのメモ</title>
 
     
-    <link href="/css/nucleus.css?1587984375" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1587984375" rel="stylesheet">
-    <link href="/css/hybrid.css?1587984375" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1587984375" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1587984375" rel="stylesheet">
-    <link href="/css/auto-complete.css?1587984375" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1587984375" rel="stylesheet">
-    <link href="/css/theme.css?1587984375" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1587984375" rel="stylesheet">
+    <link href="/css/nucleus.css?1588774708" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1588774708" rel="stylesheet">
+    <link href="/css/hybrid.css?1588774708" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1588774708" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1588774708" rel="stylesheet">
+    <link href="/css/auto-complete.css?1588774708" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1588774708" rel="stylesheet">
+    <link href="/css/theme.css?1588774708" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1588774708" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1587984375"></script>
+    <script src="/js/jquery-3.3.1.min.js?1588774708"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -82,14 +82,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1587984375"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1587984375"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1588774708"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1588774708"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/spacevveasel.github.io\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1587984375"></script>
+<script type="text/javascript" src="/js/search.js?1588774708"></script>
 
     
   </div>
@@ -367,6 +367,8 @@ if (!doNotTrack) {
     <li>
       <ul>
         <li><a href="#logrotateの処理順">logrotateの処理順</a></li>
+        <li><a href="#anacron-によるジョブの実行時刻について">anacron によるジョブの実行時刻について</a></li>
+        <li><a href="#ulimitと自動起動設定について">ulimitと自動起動設定について</a></li>
       </ul>
     </li>
   </ul>
@@ -411,7 +413,107 @@ if (!doNotTrack) {
 <li>lastaction/endscriptの実行</li>
 </ol>
 <p>※preremoveはローテーション対象ファイル数分、繰り返し実行される。</p>
+<p>検証記事は<a href="https://mogu2itachi.hatenablog.com/entry/2020/01/26/145929">ブログ</a>へ</p>
+<h3 id="anacron-によるジョブの実行時刻について">anacron によるジョブの実行時刻について</h3>
+<p>anacronはcronにより、1時間に1回起動される。<br>
+(/etc/cron.hourly/0anacronにより、デフォルトでは毎時1分に起動される)</p>
+<p>設定ファイルは以下である。<br>
+/etc/anacrontab</p>
+<pre><code>SHELL=/bin/sh
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+# the maximal random delay added to the base delay of the jobs
+RANDOM_DELAY=45
+#  the jobs will be started during the following hours only
+START_HOURS_RANGE=3-22
 
+# period in days   delay in minutes   job-identifier   command
+1        5       cron.daily              nice run-parts /etc/cron.daily
+7        25      cron.daily              nice run-parts /etc/cron.weekly
+@monthly  45     cron.daily              nice run-parts /etc/cron.monthly
+</code></pre><p>anacronが起動された際に、以下の様に、ジョブの実行時刻を決定する。</p>
+<p>ジョブの実行時刻 = anacronの起動時刻 + ランダム遅延時間 + ジョブ固有の遅延時間<br>
+　ジョブの実行時刻がジョブの実行時間範囲内である場合、実行される。<br>
+　ジョブの実行時刻がジョブの実行時間範囲内でない場合、スキップされる。</p>
+<ul>
+<li>ランダム遅延時間 = RANDOM_DELAY</li>
+<li>ジョブ固有の遅延時間 = delay in minutes</li>
+<li>ジョブの実行時間範囲 = START_HOURS_RANGE</li>
+</ul>
+<p>また、ジョブの実行時刻が1時間以上後の場合、次回のジョブがスキップされる。<br>
+以下にanacronの動作例を記載する。</p>
+<ol>
+<li>
+<p><strong>02:01にanacronが起動</strong><br>
+RANDOM_DELAY = 40であったとする。</p>
+<p>cron.daily<br>
+02:01 + ランダム遅延時間(40min) + ジョブ固有の遅延時間(5min) = 02:46<br>
+ジョブの実行時間範囲外であるため、実行されない</p>
+<p>cron.weekly<br>
+02:01 + ランダム遅延時間(40min) + ジョブ固有の遅延時間(25min) = 03:06<br>
+ジョブの実行時間範囲内であるため、実行される。</p>
+<p>cron.monthly<br>
+02:01 + ランダム遅延時間(40min) + ジョブ固有の遅延時間(45min) = 03:26<br>
+ジョブの実行時間範囲内であるため、実行される。</p>
+</li>
+<li>
+<p><strong>03:01にanacronが起動</strong><br>
+02:01に起動したanacronのジョブ実行時刻が03:01以降であるため、<br>
+ジョブ実行履歴ファイル(/var/spool/anacron/cron.*)をロックし続けており、スキップされる。</p>
+</li>
+<li>
+<p><strong>03:06 にcron.weeklyジョブが実行される。</strong></p>
+</li>
+<li>
+<p><strong>03:26 にcron.monthlyジョブが実行される。</strong></p>
+</li>
+<li>
+<p><strong>04:01にanacronが起動</strong><br>
+RANDOM_DELAY = 15であったとする。</p>
+<p>cron.daily<br>
+04:01 + ランダム遅延時間(15min) + ジョブ固有の遅延時間(5min) = 04:21<br>
+ジョブの実行時間範囲内であるため、実行される。</p>
+<p>cron.weekly<br>
+本日既に実行されているため、実行されない。</p>
+<p>cron.monthly<br>
+本日既に実行されているため、実行されない。</p>
+</li>
+<li>
+<p><strong>04:21 にcron.dailyジョブが実行される。</strong></p>
+</li>
+<li>
+<p><strong>05:01にanacronが起動</strong><br>
+本日既にすべてのジョブが実行されているため、何も実行されない。</p>
+</li>
+</ol>
+<p>参考URL</p>
+<ul>
+<li><a href="https://qiita.com/ohtsuka1317/items/b89ea66f3d227c172477">細かすぎて伝わらない anacron の挙動</a></li>
+<li><a href="http://www.reqtc.com/column/anacron1.html">RHEL 6のジョブスケジューラ「anacron」とは　Part1</a></li>
+</ul>
+<h3 id="ulimitと自動起動設定について">ulimitと自動起動設定について</h3>
+<p>/etc/security/limits.confにおいて、ulimitを設定しても、<br>
+OSの自動起動によってプロセスが起動された場合、ulimitが適用されない。<br>
+(ulimitとは、PAM認証を通ったユーザへのリソース設定であるため)</p>
+<p>起動方式によって、以下の様な対応をする。</p>
+<ul>
+<li><strong>Systemd方式</strong><br>
+サービスに設定する<br>
+/etc/systemd/system/&lt;サービス名&gt;</li>
+</ul>
+<pre><code>\[Service]
+LimitNOFILE=64000  
+LimitNPROC=16000  
+LimitDATA=8000000000  
+</code></pre><ul>
+<li><strong>SysVinit方式</strong><br>
+起動スクリプトにulimitを設定する。<br>
+/etc/init.d/&lt;プロセス名&gt;</li>
+</ul>
+<pre><code>  ulimit -n 64000  
+  ulimit -u 16000  
+  ulimit -d 8000000000  
+</code></pre>
 
 
 
@@ -586,19 +688,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1587984375"></script>
-    <script src="/js/perfect-scrollbar.min.js?1587984375"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1587984375"></script>
-    <script src="/js/jquery.sticky.js?1587984375"></script>
-    <script src="/js/featherlight.min.js?1587984375"></script>
-    <script src="/js/highlight.pack.js?1587984375"></script>
+    <script src="/js/clipboard.min.js?1588774708"></script>
+    <script src="/js/perfect-scrollbar.min.js?1588774708"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1588774708"></script>
+    <script src="/js/jquery.sticky.js?1588774708"></script>
+    <script src="/js/featherlight.min.js?1588774708"></script>
+    <script src="/js/highlight.pack.js?1588774708"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1587984375"></script>
-    <script src="/js/learn.js?1587984375"></script>
-    <script src="/js/hugo-learn.js?1587984375"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1588774708"></script>
+    <script src="/js/learn.js?1588774708"></script>
+    <script src="/js/hugo-learn.js?1588774708"></script>
 
-    <link href="/mermaid/mermaid.css?1587984375" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1587984375"></script>
+    <link href="/mermaid/mermaid.css?1588774708" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1588774708"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
