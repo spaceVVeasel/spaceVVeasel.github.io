@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Savedsearches :: 宇宙イタチのメモ</title>
+    <title>Squid :: 宇宙イタチのメモ</title>
 
     
     <link href="/css/nucleus.css?1591890998" rel="stylesheet">
@@ -47,7 +47,7 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
   </head>
-  <body class="" data-url="/splunk/configs/savedsearches/">
+  <body class="" data-url="/squid/">
     <nav id="sidebar" class="">
 
 
@@ -132,7 +132,7 @@ if (!doNotTrack) {
   
     
     <li data-nav-id="/splunk/" title="Splunk" class="dd-item 
-        parent
+        
         
         
         ">
@@ -161,7 +161,7 @@ if (!doNotTrack) {
   
     
     <li data-nav-id="/splunk/configs/" title="Configs" class="dd-item 
-        parent
+        
         
         
         ">
@@ -187,7 +187,7 @@ if (!doNotTrack) {
  
   
     
-      <li data-nav-id="/splunk/configs/savedsearches/" title="Savedsearches" class="dd-item active">
+      <li data-nav-id="/splunk/configs/savedsearches/" title="Savedsearches" class="dd-item ">
         <a href="/splunk/configs/savedsearches/">
         Savedsearches
         
@@ -277,8 +277,8 @@ if (!doNotTrack) {
   
     
     <li data-nav-id="/squid/" title="Squid" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/squid/">
@@ -375,19 +375,7 @@ if (!doNotTrack) {
             
           
           
-            
-            
-          
-          
-            
-            
-          
-          
-            <a href='/'>Top Page</a> > <a href='/splunk/'>Splunk</a> > <a href='/splunk/configs/'>Configs</a> > Savedsearches
-          
-         
-          
-         
+            <a href='/'>Top Page</a> > Squid
           
          
           
@@ -400,7 +388,7 @@ if (!doNotTrack) {
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#savedsearchesconf">savedsearches.conf</a>
+    <li><a href="#squidconf">squid.conf</a>
       <ul>
         <li></li>
       </ul>
@@ -422,7 +410,7 @@ if (!doNotTrack) {
           
             <h1>
               
-              Savedsearches
+              Squid
             </h1>
           
 
@@ -430,230 +418,60 @@ if (!doNotTrack) {
 
 
 
-<h2 id="savedsearchesconf">savedsearches.conf</h2>
-<h4 id="search--string">search = &lt;string&gt;</h4>
+
+	<h2 id="squidconf">squid.conf</h2>
+<p><a href="http://www.squid-cache.org/Doc/config/">公式リファレンスへのリンク</a></p>
+<h4 id="logformat">logformat</h4>
+<p>アクセスログのフォーマットを定義する。</p>
+<h4 id="access_log">access_log</h4>
+<p>アクセスログに用いるフォーマットを指定する。<br>
+フォーマットは<a href="/squid/#logformat">logformat</a>で定義する。</p>
+<h4 id="http_port">http_port</h4>
+<p>Squidで用いるポートを指定する。<br>
+主にSquidをフォワードプロキシとして用いる場合に用いる。</p>
 <ul>
-<li>The actual search string for the saved search.<br>
-For example, &lsquo;search = index::sampledata http NOT 500&rsquo;.</li>
-<li>Your search can include macro searches for substitution.</li>
-<li>To learn more about creating a macro search, search the documentation for<br>
-&ldquo;macro search.&rdquo;</li>
-<li>Multi-line search strings currently have some limitations.  For example use<br>
-with the search command &lsquo;|savedsearch&rsquo; does not currently work with multi-line<br>
-search strings.</li>
-<li>No default.</li>
-</ul>
-<p>実行するサーチ文を入力する。<br>
-サーチ文をconf内で改行する際は、行末に&rdquo;&quot;を入力する。</p>
-<h4 id="cron_schedule--cron-string">cron_schedule = &lt;cron string&gt;</h4>
+<li>
+<p><strong>Modes</strong></p>
 <ul>
-<li>The cron schedule that is used to run this search.</li>
-<li>For example: */5 * * * *  causes the search to run every 5 minutes.</li>
-<li>You can use standard cron notation to define your scheduled search interval.<br>
-In particular, cron can accept this type of notation: 00,20,40 * * * *, which<br>
-runs the search every hour at hh:00, hh:20, hh:40.<br>
-A cron of 03,23,43 * * * * runs the search every hour at hh:03, hh:23, hh:43.</li>
-<li>You should schedule your searches so that they are staggered over time.<br>
-This reduces system load. Running all of the saved searches every 20 minutes<br>
-(*/20) means all of the searches would launch at hh:00 (20, 40) and might<br>
-slow your system every 20 minutes.</li>
-<li>The Splunk cron implementation does not currently support names of<br>
-months or days.</li>
-<li>No default.</li>
-</ul>
-<p>実行時間をcron形式で入力する。</p>
-<h4 id="realtime_schedule--01">realtime_schedule = [0|1]</h4>
-<ul>
-<li>Controls the way the scheduler computes the next run time of a<br>
-scheduled search.</li>
-<li>If set to 1, the scheduler determines the next scheduled search run time<br>
-based on the current time.
-<ul>
-<li>NOTE: When set to 1, the scheduler might skip some execution periods<br>
-to make sure that the scheduler is executing the searches that are running<br>
-over the most recent time range.</li>
+<li>
+<p><strong>ssl-bump</strong><br>
+HTTPS通信を復号化し、再度暗号化して通信を行う。<br>
+いわゆる Man-In-The-Middle プロキシ。</p>
+</li>
+<li>
+<p><strong>accel</strong><br>
+リバースプロキシモードとして用いる。</p>
+</li>
 </ul>
 </li>
-<li>If set to 0, the scheduler determines the next scheduled search run time<br>
-based on the last run time for the search. This is called continuous<br>
-scheduling.
+</ul>
+<h4 id="https_port">https_port</h4>
+<p>Squidで用いるポートを指定する。<br>
+主にSquidをリバースプロキシとして用い、SSLアクセラレータとして使用する場合に用いる。</p>
+<h4 id="ssl_bump">ssl_bump</h4>
 <ul>
-<li>NOTE: When set to 0, the scheduler never skips scheduled execution periods.<br>
-However, the execution of the saved search might fall behind<br>
-depending on the scheduler&rsquo;s load.</li>
-<li>Use continuous scheduling whenever you enable the &lsquo;summary index&rsquo; option.</li>
+<li><strong>step SSLBump1</strong>
+<ul>
+<li>
+<p><strong>client-first</strong><br>
+最初にクライアントと接続を確立する。</p>
+</li>
+<li>
+<p><strong>server-first</strong><br>
+最初にサーバと接続を確立する。</p>
+</li>
 </ul>
 </li>
-<li>The scheduler tries to run searches that have &lsquo;realtime_schedule&rsquo; set to 1<br>
-before it runs searches that have continuous scheduling<br>
-(realtime_schedule = 0).</li>
-<li>Default: 1</li>
 </ul>
-<p>0に設定するとアラートをスキップしないが実行が遅れる場合がある。<br>
-1に設定するとアラートはスキップされる。</p>
-<h4 id="schedule_priority---default--higher--highest-">schedule_priority = [ default | higher | highest ]</h4>
-<ul>
-<li>Raises the scheduling priority of a search:
-<ul>
-<li>When set to &ldquo;default&rdquo;, specifies that there is no increase to the scheduling<br>
-priority.</li>
-<li>When set to &ldquo;higher&rdquo;, specifies that the scheduling priority is higher than<br>
-other searches of the same scheduling tier. While there are four tiers of<br>
-priority for scheduled searches, only the following are affected by this<br>
-setting:
-<ol>
-<li>Real-Time-Scheduled (realtime_schedule=1).</li>
-<li>Continuous-Scheduled (realtime_schedule=0).</li>
-</ol>
-</li>
-<li>When set to &ldquo;highest&rdquo;, specifies that the scheduling priority is higher<br>
-than other searches regardless of scheduling tier. However,<br>
-real-time-scheduled searches with &lsquo;schedule_priority = highest&rsquo; always have<br>
-priority over continuous scheduled searches with &lsquo;schedule_priority = highest&rsquo;.</li>
-<li>The high-to-low order is:<br>
-RTSS(H) &gt; CSS(H) &gt; RTSS(h) &gt; RTSS(d) &gt; CSS(h) &gt; CSS(d)<br>
-Where:<br>
-RTSS = real-time-scheduled search<br>
-CSS = continuous-scheduled search<br>
-d = default<br>
-h = higher<br>
-H = highest</li>
-</ul>
-</li>
-<li>The scheduler honors a non-default priority only when the search owner has<br>
-the &lsquo;edit_search_schedule_priority&rsquo; capability.
-<ul>
-<li>A non-default priority is mutually exclusive with a non-zero &lsquo;schedule_window&rsquo;<br>
-(see below).  If a user specifies both for a scheduled search, the scheduler<br>
-honors the priority only.</li>
-<li>However, if a user specifies both settings for a search, but the search owner<br>
-does not have the &lsquo;edit_search_scheduler_priority&rsquo; capability, then the<br>
-scheduler ignores the priority setting and honors the &lsquo;schedule_window&rsquo;.</li>
-</ul>
-</li>
-<li>CAUTION: Having too many searches with a non-default priority will impede the<br>
-ability of the scheduler to minimize search starvation. Use this setting<br>
-only for mission-critical searches.</li>
-<li>Default: default</li>
-</ul>
-<p>アラートに優先度を設定する。<br>
-本当に必要なものにだけ、設定しないと意味がなくなる。</p>
-<h4 id="counttype---number-of-events--number-of-hosts--number-of-sources--custom--always-">counttype = [ number of events | number of hosts | number of sources | custom | always ]</h4>
-<ul>
-<li>Set the type of count for alerting.</li>
-<li>Used with the &lsquo;relation&rsquo; and &lsquo;quantity&rsquo; settings.</li>
-<li>NOTE: If you specify &ldquo;always,&rdquo; do not set &lsquo;relation&rsquo; or &lsquo;quantity&rsquo;.</li>
-<li>Default: always</li>
-</ul>
-<p>&ldquo;relation&rdquo;、&ldquo;quantity&quot;とセットで用いる。</p>
-<h4 id="relation---greater-than--less-than--equal-to--not-equal-to--drops-by--rises-by-">relation = [ greater than | less than | equal to | not equal to | drops by | rises by ]</h4>
-<ul>
-<li>Specifies how to compare against &lsquo;counttype&rsquo;.</li>
-<li>Default: empty string</li>
-</ul>
-<p>&ldquo;counttype&rdquo;、&ldquo;quantity&quot;とセットで用いる。</p>
-<h4 id="quantity--integer">quantity = &lt;integer&gt;</h4>
-<ul>
-<li>Specifies a value for the &lsquo;counttype&rsquo; and &lsquo;relation&rsquo;, to determine the condition<br>
-under which an alert is triggered by a saved search.</li>
-<li>Think of it as a sentence constructed like this: <!-- raw HTML omitted --> <!-- raw HTML omitted --> <!-- raw HTML omitted -->.
-<ul>
-<li>For example, &ldquo;number of events [is] greater than 10&rdquo; sends an alert when the<br>
-count of events is larger than by 10.</li>
-<li>For example, &ldquo;number of events drops by 10%&rdquo; sends an alert when the count of<br>
-events drops by 10%.</li>
-</ul>
-</li>
-<li>Default: empty string</li>
-</ul>
-<p>&ldquo;counttype&rdquo;、&ldquo;relation&quot;とセットで用いる。<br>
-イメージとしては、&lt;counttype&gt; &lt;relation&gt; &lt;quantity&gt;.<br>
-アラートの発砲条件として、設定する。</p>
-<h4 id="actionsummary_index--0--1">action.summary_index = 0 | 1</h4>
-<ul>
-<li>Enables or disables the summary index action.</li>
-<li>Specify 1 to enable, 0 to disable.</li>
-<li>Default: 0</li>
-</ul>
-<p>アラートの結果をサマリインデックスに出力する。</p>
-<h4 id="actionsummary_index_name--index">action.summary_index._name = &lt;index&gt;</h4>
-<ul>
-<li>Specifies the name of the summary index where the results of the scheduled<br>
-search are saved.</li>
-<li>Default: summary</li>
-</ul>
-<p>出力するサマリインデックスを指定する。</p>
-<h4 id="dispatchearliest_time--time-str">dispatch.earliest_time = &lt;time-str&gt;</h4>
-<ul>
-<li>Specifies the earliest time for this search. Can be a relative or absolute<br>
-time.</li>
-<li>If this value is an absolute time, use the &lsquo;dispatch.time_format&rsquo; setting<br>
-to format the value.</li>
-<li>Default: empty string</li>
-</ul>
-<p>サーチの検索範囲を決定する。<br>
-_timeの最古の時間を指定する。</p>
-<h4 id="dispatchlatest_time--time-str">dispatch.latest_time = &lt;time-str&gt;</h4>
-<ul>
-<li>Specifies the latest time for this saved search. Can be a relative or<br>
-absolute time.</li>
-<li>If this value is an absolute time, use the &lsquo;dispatch.time_format&rsquo; setting<br>
-to format the value.</li>
-<li>Default: empty string</li>
-</ul>
-<p>サーチの検索範囲を決定する。<br>
-_timeの最新の時間を指定する。</p>
-<h4 id="dispatchindex_earliest-time-str">dispatch.index_earliest= &lt;time-str&gt;</h4>
-<ul>
-<li>Specifies the earliest index time for this search. Can be a relative or<br>
-absolute time.</li>
-<li>If this value is an absolute time, use the &lsquo;dispatch.time_format setting<br>
-to format the value.</li>
-<li>Defaults to empty string.</li>
-</ul>
-<p>サーチの検索範囲を決定する。<br>
-_index_timeの最古の時間を指定する。</p>
-<h4 id="dispatchindex_latest-time-str">dispatch.index_latest= &lt;time-str&gt;</h4>
-<ul>
-<li>Specifies the latest index time for this saved search. Can be a relative or<br>
-absolute time.</li>
-<li>If this value is an absolute time, use the &lsquo;dispatch.time_format&rsquo; setting<br>
-to format the value.</li>
-<li>Default: empty string</li>
-</ul>
-<p>サーチの検索範囲を決定する。<br>
-_index_timeの最新の時間を指定する。</p>
-<h4 id="alertsuppress--0--1">alert.suppress = 0 | 1</h4>
-<ul>
-<li>Specifies whether alert suppression is enabled for this scheduled search.</li>
-<li>Default: 0 (false)</li>
-</ul>
-<p>アラートを抑制するかどうか決定する。</p>
-<h4 id="alertsuppressperiod--time-specifier">alert.suppress.period = &lt;time-specifier&gt;</h4>
-<ul>
-<li>Sets the suppression period. Use [number][time-unit] to specify a time.</li>
-<li>For example: 60 = 60 seconds, 1m = 1 minute, 1h = 60 minutes.</li>
-<li>Honored if and only if &lsquo;alert.suppress = 1&rsquo;.</li>
-<li>Default: empty string</li>
-</ul>
-<p>アラートの抑制期間を設定する。</p>
-<h4 id="alerttrack--boolean--auto">alert.track = &lt;boolean&gt; | auto</h4>
-<ul>
-<li>Specifies whether to track the actions triggered by this scheduled search.
-<ul>
-<li>auto - determine whether to track or not based on the tracking setting of<br>
-each action, do not track scheduled searches that always trigger actions.</li>
-<li>true - force alert tracking.</li>
-<li>false - disable alert tracking for this search.</li>
-</ul>
-</li>
-<li>Default: auto</li>
-</ul>
-<p>アラートを追跡するかどうか設定する。<br>
-この設定が auto の場合、counttype の設定値が always の時は追跡しない。</p>
+<h4 id="acl">acl</h4>
+<p>Access Control List<br>
+ネットワークやポート等を用いてアクセス制限を行う。</p>
 
 
-<footer class="footline">
+
+
+
+<footer class=" footline" >
 	
 </footer>
 
@@ -707,7 +525,6 @@ each action, do not track scheduled searches that always trigger actions.</li>
             
                 
                     
-                    
                 
                 
 
@@ -723,7 +540,6 @@ each action, do not track scheduled searches that always trigger actions.</li>
             
                 
                     
-                    
                 
                 
 
@@ -731,45 +547,6 @@ each action, do not track scheduled searches that always trigger actions.</li>
                     
                     
 
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
                     
                         
             
@@ -810,6 +587,45 @@ each action, do not track scheduled searches that always trigger actions.</li>
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -831,10 +647,10 @@ each action, do not track scheduled searches that always trigger actions.</li>
 	 
 	 
 		
-			<a class="nav nav-prev" href="/splunk/configs/" title="Configs"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/splunk/tips/" title="Tips"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/splunk/logs/" title="Logs" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/misc/" title="Misc" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

@@ -12,18 +12,18 @@
     <title>Logs :: 宇宙イタチのメモ</title>
 
     
-    <link href="/css/nucleus.css?1588774708" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1588774708" rel="stylesheet">
-    <link href="/css/hybrid.css?1588774708" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1588774708" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1588774708" rel="stylesheet">
-    <link href="/css/auto-complete.css?1588774708" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1588774708" rel="stylesheet">
-    <link href="/css/theme.css?1588774708" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1588774708" rel="stylesheet">
+    <link href="/css/nucleus.css?1591890998" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1591890998" rel="stylesheet">
+    <link href="/css/hybrid.css?1591890998" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1591890998" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1591890998" rel="stylesheet">
+    <link href="/css/auto-complete.css?1591890998" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1591890998" rel="stylesheet">
+    <link href="/css/theme.css?1591890998" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1591890998" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1588774708"></script>
+    <script src="/js/jquery-3.3.1.min.js?1591890998"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -82,14 +82,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1588774708"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1588774708"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1591890998"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1591890998"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/spacevveasel.github.io\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1588774708"></script>
+<script type="text/javascript" src="/js/search.js?1591890998"></script>
 
     
   </div>
@@ -276,6 +276,30 @@ if (!doNotTrack) {
  
   
     
+    <li data-nav-id="/squid/" title="Squid" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/squid/">
+          Squid
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
     <li data-nav-id="/misc/" title="Misc" class="dd-item 
         
         
@@ -404,10 +428,8 @@ if (!doNotTrack) {
 
 	<h3 id="_internalログ">_internalログ</h3>
 <p>splunkの_internalログはComponentフィールドを確認することで分類できる。</p>
-<ul>
-<li>
-<p><strong>Metrics</strong><br>
-リソースの使用状況に関するログ。<br>
+<h4 id="metrics">Metrics</h4>
+<p>リソースの使用状況に関するログ。<br>
 groupによってさらに分類され、各機能の稼働状況を記録する</p>
 <ul>
 <li>
@@ -429,70 +451,60 @@ nameを見ることで各種queueの状況を確認できる。<br>
 rest command : <code>|rest /services/server/introspection/queues</code></p>
 </li>
 </ul>
-</li>
-<li>
-<p><strong>BucketMover</strong><br>
-バケツの状態の移行(Hot -&gt; Coold,Cold-&gt;Frozen)に関するログ。<br>
+<h4 id="bucketmover">BucketMover</h4>
+<p>バケツの状態の移行(Hot -&gt; Coold,Cold-&gt;Frozen)に関するログ。<br>
 Frozen状態に移行する理由や、移行したバケツ情報のログが出力される。</p>
 <p>保存期間を過ぎたため削除された場合、以下のようなログが出力される。<br>
 will attempt to freeze: candidate='C:\Program Files\Splunk\var\lib\splunk_introspection\db\db_1566816331_1566816331_37&rsquo; because frozenTimePeriodInSecs=1209600 is exceeded by the difference between now=1587000072 and latest=1566816331</p>
 <p>保存容量を超えたため削除された場合、以下のようなログが出力される。<br>
 will attempt to freeze bkt=&quot;C:\Program Files\Splunk\var\lib\splunk\test_delete\db\db_1573496341_1570127465_0&rdquo; reason=&rdquo; maxTotalDataSize=1048576 bytes, diskSize=7081984 bytes&rdquo;</p>
-</li>
-<li>
-<p><strong>HotBucketRoller</strong><br>
-HotBucketからの移行に関するログ。<br>
+<h4 id="hotbucketroller">HotBucketRoller</h4>
+<p>HotBucketからの移行に関するログ。<br>
 Hotから移行したバケツ情報のログが出力される。</p>
-</li>
-<li>
-<p><strong>DeployedServerclass</strong><br>
-ForwarderManagementに関するログ。<br>
+<h4 id="deployedserverclass">DeployedServerclass</h4>
+<p>ForwarderManagementに関するログ。<br>
 Forwarderに配布したAppsの更新・削除等のログが出力される。</p>
-</li>
-<li>
-<p><strong>IniFile</strong><br>
-設定ファイルに関するログ。<br>
+<h4 id="inifile">IniFile</h4>
+<p>設定ファイルに関するログ。<br>
 設定ファイルのフォーマットの記載ミス等を表示すると思われる。<br>
 Splunkの起動時等(おそらく設定ファイルの読み込み時)に出力される。</p>
-</li>
-<li>
-<p><strong>TailReader</strong><br>
-モニタリングしているファイルの末尾に関するログ。</p>
-</li>
-<li>
-<p><strong>SavedSplunker</strong><br>
-アラートに関するログ。<br>
+<h4 id="tailreader">TailReader</h4>
+<p>モニタリングしているファイルの末尾に関するログ。</p>
+<h4 id="savedsplunker">SavedSplunker</h4>
+<p>アラートに関するログ。<br>
 アラートの実行時・終了時に出力される。<br>
 scheduled_time(実行予定時間) : &lt;epoch_time&gt;<br>
 dispatch_time(実行時間) : &lt;epoch_time&gt;<br>
 status(実行結果) : (success|skipped)<br>
 suppressed(アラートの抑制結果) :(0|1)</p>
-</li>
+<h4 id="licenseusage">LicenseUsage</h4>
+<p>ライセンスに関するログ。<br>
+typeによってさらに分類され、ライセンスグループやライセンス消費量などを記載する。</p>
+<ul>
+<li><strong>Usage</strong><br>
+idx : 取り込みインデックス<br>
+st : 取り込みソースタイプ<br>
+h : 取り込みホスト<br>
+b : ライセンス消費量(bytes)</li>
 </ul>
 <h3 id="_introspectionログ">_introspectionログ</h3>
 <p>splunkの_introspectionログはComponentフィールドを確認することで分類できる。<br>
 また、ログに記載される情報はSPLUNK REST API の実行結果と思われる。</p>
-<ul>
-<li>
-<p><strong>Partitions</strong><br>
-Partitionの容量に関するログ。<br>
+<h4 id="partitions">Partitions</h4>
+<p>Partitionの容量に関するログ。<br>
 capacity : ディスクの最大容量<br>
 free : ディスクの空き容量<br>
 available : ディスクの利用可能容量<br>
 rest command : <code>|rest /services/server/status/partitions-space</code></p>
-</li>
-<li>
-<p><strong>Volumes</strong><br>
-Volumeの容量に関するログ。<br>
+<h4 id="volumes">Volumes</h4>
+<p>Volumeの容量に関するログ。<br>
 name : ボリューム名<br>
 max_size : ボリュームの最大値<br>
 volume_path: ボリュームのファイルパス<br>
 total_size : ボリュームの合計値、data.max_sizeがInfiniteの場合、表示されない<br>
 rest command : <code>|rest /services/data/index-volumes</code></p>
-</li>
-<li>
-<p><strong>IOStats</strong><br>
-ディスクI/Oに関するログ。<br>
+<h4 id="iostats">IOStats</h4>
+<p>ディスクI/Oに関するログ。<br>
 avg_total_ms : 平均実行処理数<br>
 cpu_pct : CPU稼働率<br>
 device : デバイス名<br>
@@ -504,10 +516,8 @@ reads_ps : 読み込み要求数<br>
 writes_kb_ps : 書き込み速度(kb/s)<br>
 writes_ps : 書き込み要求数<br>
 rest command : <code>|rest /services/server/status/resource-usage/iostats</code></p>
-</li>
-<li>
-<p><strong>Indexes</strong><br>
-Indexの状態に関するログ。<br>
+<h4 id="indexes">Indexes</h4>
+<p>Indexの状態に関するログ。<br>
 name : インデックス名<br>
 total_bucket_count : バケツ数<br>
 total_event_count : イベント数<br>
@@ -519,10 +529,8 @@ event_count : イベント数<br>
 event_min_time : イベントの最小時間<br>
 event_max_time : イベントの最大時間<br>
 rest command : <code>|rest /services/data/indexes-extended</code></p>
-</li>
-<li>
-<p><strong>Hostwide</strong><br>
-cpu_arch : CPUアーキテクチャ<br>
+<h4 id="hostwide">Hostwide</h4>
+<p>cpu_arch : CPUアーキテクチャ<br>
 cpu_count : CPU数<br>
 cpu_idle_pct : CPUの未使用率<br>
 cpu_system_pct : システムによるCPU消費率<br>
@@ -542,8 +550,6 @@ splunk_version : Splunkバージョン<br>
 swap : スワップ領域<br>
 swap_used : スワップ使用量<br>
 rest command : <code>|rest /services/server/status/resource-usage/hostwide</code></p>
-</li>
-</ul>
 
 
 
@@ -704,6 +710,22 @@ rest command : <code>|rest /services/server/status/resource-usage/hostwide</code
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
         
@@ -726,19 +748,19 @@ rest command : <code>|rest /services/server/status/resource-usage/hostwide</code
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1588774708"></script>
-    <script src="/js/perfect-scrollbar.min.js?1588774708"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1588774708"></script>
-    <script src="/js/jquery.sticky.js?1588774708"></script>
-    <script src="/js/featherlight.min.js?1588774708"></script>
-    <script src="/js/highlight.pack.js?1588774708"></script>
+    <script src="/js/clipboard.min.js?1591890998"></script>
+    <script src="/js/perfect-scrollbar.min.js?1591890998"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1591890998"></script>
+    <script src="/js/jquery.sticky.js?1591890998"></script>
+    <script src="/js/featherlight.min.js?1591890998"></script>
+    <script src="/js/highlight.pack.js?1591890998"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1588774708"></script>
-    <script src="/js/learn.js?1588774708"></script>
-    <script src="/js/hugo-learn.js?1588774708"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1591890998"></script>
+    <script src="/js/learn.js?1591890998"></script>
+    <script src="/js/hugo-learn.js?1591890998"></script>
 
-    <link href="/mermaid/mermaid.css?1588774708" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1588774708"></script>
+    <link href="/mermaid/mermaid.css?1591890998" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1591890998"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -12,18 +12,18 @@
     <title>Linux :: 宇宙イタチのメモ</title>
 
     
-    <link href="/css/nucleus.css?1588774708" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1588774708" rel="stylesheet">
-    <link href="/css/hybrid.css?1588774708" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1588774708" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1588774708" rel="stylesheet">
-    <link href="/css/auto-complete.css?1588774708" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1588774708" rel="stylesheet">
-    <link href="/css/theme.css?1588774708" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1588774708" rel="stylesheet">
+    <link href="/css/nucleus.css?1591890998" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1591890998" rel="stylesheet">
+    <link href="/css/hybrid.css?1591890998" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1591890998" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1591890998" rel="stylesheet">
+    <link href="/css/auto-complete.css?1591890998" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1591890998" rel="stylesheet">
+    <link href="/css/theme.css?1591890998" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1591890998" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1588774708"></script>
+    <script src="/js/jquery-3.3.1.min.js?1591890998"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -82,14 +82,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1588774708"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1588774708"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1591890998"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1591890998"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/spacevveasel.github.io\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1588774708"></script>
+<script type="text/javascript" src="/js/search.js?1591890998"></script>
 
     
   </div>
@@ -276,6 +276,30 @@ if (!doNotTrack) {
  
   
     
+    <li data-nav-id="/squid/" title="Squid" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/squid/">
+          Squid
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
     <li data-nav-id="/misc/" title="Misc" class="dd-item 
         
         
@@ -364,13 +388,10 @@ if (!doNotTrack) {
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#logrotateの処理順">logrotateの処理順</a></li>
-        <li><a href="#anacron-によるジョブの実行時刻について">anacron によるジョブの実行時刻について</a></li>
-        <li><a href="#ulimitと自動起動設定について">ulimitと自動起動設定について</a></li>
-      </ul>
-    </li>
+    <li><a href="#logrotateの処理順">logrotateの処理順</a></li>
+    <li><a href="#anacron-によるジョブの実行時刻について">anacron によるジョブの実行時刻について</a></li>
+    <li><a href="#ulimitと自動起動設定について">ulimitと自動起動設定について</a></li>
+    <li><a href="#ファイルのタイムスタンプ">ファイルのタイムスタンプ</a></li>
   </ul>
 </nav>
     </div>
@@ -397,7 +418,7 @@ if (!doNotTrack) {
 
 
 
-	<h3 id="logrotateの処理順">logrotateの処理順</h3>
+	<h2 id="logrotateの処理順">logrotateの処理順</h2>
 <ol>
 <li>firstaction/endscriptの実行</li>
 <li>ローテーション済みファイルのローテーション<br>
@@ -414,7 +435,7 @@ if (!doNotTrack) {
 </ol>
 <p>※preremoveはローテーション対象ファイル数分、繰り返し実行される。</p>
 <p>検証記事は<a href="https://mogu2itachi.hatenablog.com/entry/2020/01/26/145929">ブログ</a>へ</p>
-<h3 id="anacron-によるジョブの実行時刻について">anacron によるジョブの実行時刻について</h3>
+<h2 id="anacron-によるジョブの実行時刻について">anacron によるジョブの実行時刻について</h2>
 <p>anacronはcronにより、1時間に1回起動される。<br>
 (/etc/cron.hourly/0anacronにより、デフォルトでは毎時1分に起動される)</p>
 <p>設定ファイルは以下である。<br>
@@ -491,7 +512,7 @@ RANDOM_DELAY = 15であったとする。</p>
 <li><a href="https://qiita.com/ohtsuka1317/items/b89ea66f3d227c172477">細かすぎて伝わらない anacron の挙動</a></li>
 <li><a href="http://www.reqtc.com/column/anacron1.html">RHEL 6のジョブスケジューラ「anacron」とは　Part1</a></li>
 </ul>
-<h3 id="ulimitと自動起動設定について">ulimitと自動起動設定について</h3>
+<h2 id="ulimitと自動起動設定について">ulimitと自動起動設定について</h2>
 <p>/etc/security/limits.confにおいて、ulimitを設定しても、<br>
 OSの自動起動によってプロセスが起動された場合、ulimitが適用されない。<br>
 (ulimitとは、PAM認証を通ったユーザへのリソース設定であるため)</p>
@@ -513,7 +534,40 @@ LimitDATA=8000000000
 <pre><code>  ulimit -n 64000  
   ulimit -u 16000  
   ulimit -d 8000000000  
-</code></pre>
+</code></pre><h2 id="ファイルのタイムスタンプ">ファイルのタイムスタンプ</h2>
+<p>Unix系のシステムは、ファイルのタイムスタンプが以下の三つある。</p>
+<table>
+<thead>
+<tr>
+<th align="left">タイムスタンプ</th>
+<th align="left">名称</th>
+<th align="left">概要</th>
+<th>ls による確認方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">atime</td>
+<td align="left">access time</td>
+<td align="left">最後にファイルにアクセスした時間</td>
+<td>ls -lu</td>
+</tr>
+<tr>
+<td align="left">ctime</td>
+<td align="left">change time</td>
+<td align="left">最後にinodeが更新された時間(ファイル内容もしくは属性が更新された場合)</td>
+<td>ls -lc</td>
+</tr>
+<tr>
+<td align="left">mtime</td>
+<td align="left">modify time</td>
+<td align="left">最後にファイル内容が更新された時間</td>
+<td>ls -l</td>
+</tr>
+</tbody>
+</table>
+<p>stat コマンドを用いればファイルの属性をすべて確認できる。</p>
+
 
 
 
@@ -666,6 +720,22 @@ LimitDATA=8000000000
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
         
@@ -688,19 +758,19 @@ LimitDATA=8000000000
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1588774708"></script>
-    <script src="/js/perfect-scrollbar.min.js?1588774708"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1588774708"></script>
-    <script src="/js/jquery.sticky.js?1588774708"></script>
-    <script src="/js/featherlight.min.js?1588774708"></script>
-    <script src="/js/highlight.pack.js?1588774708"></script>
+    <script src="/js/clipboard.min.js?1591890998"></script>
+    <script src="/js/perfect-scrollbar.min.js?1591890998"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1591890998"></script>
+    <script src="/js/jquery.sticky.js?1591890998"></script>
+    <script src="/js/featherlight.min.js?1591890998"></script>
+    <script src="/js/highlight.pack.js?1591890998"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1588774708"></script>
-    <script src="/js/learn.js?1588774708"></script>
-    <script src="/js/hugo-learn.js?1588774708"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1591890998"></script>
+    <script src="/js/learn.js?1591890998"></script>
+    <script src="/js/hugo-learn.js?1591890998"></script>
 
-    <link href="/mermaid/mermaid.css?1588774708" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1588774708"></script>
+    <link href="/mermaid/mermaid.css?1591890998" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1591890998"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

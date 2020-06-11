@@ -17,7 +17,7 @@
       <pubDate>Sat, 21 Mar 2020 17:14:08 +0900</pubDate>
       
       <guid>https://spacevveasel.github.io/splunk/configs/savedsearches/</guid>
-      <description>savedsearches.conf search = &amp;lt;string&amp;gt; No default 実行するサーチ文を入力する。 サーチ文をconf内で改行する際は、行末に&amp;rdquo;&amp;quot;を入力する。 cron_schedule = &amp;lt;cron string&amp;gt; No default 実行時間</description>
+      <description>savedsearches.conf search = &amp;lt;string&amp;gt; The actual search string for the saved search. For example, &amp;lsquo;search = index::sampledata http NOT 500&amp;rsquo;. Your search can include macro searches for substitution. To learn more about creating a macro search, search the documentation for &amp;ldquo;macro search.&amp;rdquo; Multi-line search strings currently have some limitations. For example use with the search command &amp;lsquo;|savedsearch&amp;rsquo; does not currently work with multi-line search strings. No default. 実行す</description>
     </item>
     
   </channel>

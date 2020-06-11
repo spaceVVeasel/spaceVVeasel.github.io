@@ -12,18 +12,18 @@
     <title>Tips :: 宇宙イタチのメモ</title>
 
     
-    <link href="/css/nucleus.css?1588774708" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1588774708" rel="stylesheet">
-    <link href="/css/hybrid.css?1588774708" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1588774708" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1588774708" rel="stylesheet">
-    <link href="/css/auto-complete.css?1588774708" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1588774708" rel="stylesheet">
-    <link href="/css/theme.css?1588774708" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1588774708" rel="stylesheet">
+    <link href="/css/nucleus.css?1591890998" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1591890998" rel="stylesheet">
+    <link href="/css/hybrid.css?1591890998" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1591890998" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1591890998" rel="stylesheet">
+    <link href="/css/auto-complete.css?1591890998" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1591890998" rel="stylesheet">
+    <link href="/css/theme.css?1591890998" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1591890998" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1588774708"></script>
+    <script src="/js/jquery-3.3.1.min.js?1591890998"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -82,14 +82,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1588774708"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1588774708"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1591890998"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1591890998"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/spacevveasel.github.io\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1588774708"></script>
+<script type="text/javascript" src="/js/search.js?1591890998"></script>
 
     
   </div>
@@ -276,6 +276,30 @@ if (!doNotTrack) {
  
   
     
+    <li data-nav-id="/squid/" title="Squid" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/squid/">
+          Squid
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
     <li data-nav-id="/misc/" title="Misc" class="dd-item 
         
         
@@ -370,13 +394,10 @@ if (!doNotTrack) {
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#rest-api-を用いた設定ファイルの更新">REST API を用いた設定ファイルの更新</a></li>
-        <li><a href="#bucketの命名規則">Bucketの命名規則</a></li>
-        <li><a href="#dbinspect-コマンド">dbinspect コマンド</a></li>
-      </ul>
-    </li>
+    <li><a href="#rest-api-を用いた設定ファイルの更新">REST API を用いた設定ファイルの更新</a></li>
+    <li><a href="#bucketの命名規則">Bucketの命名規則</a></li>
+    <li><a href="#dbinspect-コマンド">dbinspect コマンド</a></li>
+    <li><a href="#ログ取り込み量を確認するサーチ">ログ取り込み量を確認するサーチ</a></li>
   </ul>
 </nav>
     </div>
@@ -403,7 +424,7 @@ if (!doNotTrack) {
 
 
 
-	<h3 id="rest-api-を用いた設定ファイルの更新">REST API を用いた設定ファイルの更新</h3>
+	<h2 id="rest-api-を用いた設定ファイルの更新">REST API を用いた設定ファイルの更新</h2>
 <p>Appsの更新<br>
 <code>curl -k -u admin:&lt;password&gt; https://localhost:8089/sercicesNS/nobody/system/apps/local/&lt;app&gt;/_reload</code></p>
 <p>フィールド抽出に関する設定の更新<br>
@@ -411,14 +432,17 @@ if (!doNotTrack) {
 <p>ファイルモニターに関する設定の更新<br>
 <code>curl -k -u admin:&lt;password&gt; https://localhost:8089/sercicesNS/nobody/&lt;app&gt;/data/inputs/monitor/_reload  </code></p>
 <!-- raw HTML omitted -->
-<h3 id="bucketの命名規則">Bucketの命名規則</h3>
+<h2 id="bucketの命名規則">Bucketの命名規則</h2>
 <p>db_&lt;latest_event_time&gt;_&lt;earliest_event_time&gt;_&lt;id_num&gt;<br>
 latest_event_time : ログの最新のタイムスタンプ<br>
 earliest_event_time : ログの最古のタイムスタンプ</p>
-<h3 id="dbinspect-コマンド">dbinspect コマンド</h3>
+<h2 id="dbinspect-コマンド">dbinspect コマンド</h2>
 <p>バケツの状態によって、タイムレンジピッカーの当たるフィールドが違う。<br>
 Hot : modTime<br>
 Warm,Cold,Frozen : endEpoch</p>
+<h2 id="ログ取り込み量を確認するサーチ">ログ取り込み量を確認するサーチ</h2>
+<p>index=_internal component=LicenseUsage
+| timechart sum(b) as bytes</p>
 
 
 
@@ -579,6 +603,22 @@ Warm,Cold,Frozen : endEpoch</p>
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
         
@@ -591,7 +631,7 @@ Warm,Cold,Frozen : endEpoch</p>
 			<a class="nav nav-prev" href="/splunk/logs/" title="Logs"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/misc/" title="Misc" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/squid/" title="Squid" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -601,19 +641,19 @@ Warm,Cold,Frozen : endEpoch</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1588774708"></script>
-    <script src="/js/perfect-scrollbar.min.js?1588774708"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1588774708"></script>
-    <script src="/js/jquery.sticky.js?1588774708"></script>
-    <script src="/js/featherlight.min.js?1588774708"></script>
-    <script src="/js/highlight.pack.js?1588774708"></script>
+    <script src="/js/clipboard.min.js?1591890998"></script>
+    <script src="/js/perfect-scrollbar.min.js?1591890998"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1591890998"></script>
+    <script src="/js/jquery.sticky.js?1591890998"></script>
+    <script src="/js/featherlight.min.js?1591890998"></script>
+    <script src="/js/highlight.pack.js?1591890998"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1588774708"></script>
-    <script src="/js/learn.js?1588774708"></script>
-    <script src="/js/hugo-learn.js?1588774708"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1591890998"></script>
+    <script src="/js/learn.js?1591890998"></script>
+    <script src="/js/hugo-learn.js?1591890998"></script>
 
-    <link href="/mermaid/mermaid.css?1588774708" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1588774708"></script>
+    <link href="/mermaid/mermaid.css?1591890998" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1591890998"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

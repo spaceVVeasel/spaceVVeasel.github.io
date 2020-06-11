@@ -12,18 +12,18 @@
     <title>Configs :: 宇宙イタチのメモ</title>
 
     
-    <link href="/css/nucleus.css?1588774708" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1588774708" rel="stylesheet">
-    <link href="/css/hybrid.css?1588774708" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1588774708" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1588774708" rel="stylesheet">
-    <link href="/css/auto-complete.css?1588774708" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1588774708" rel="stylesheet">
-    <link href="/css/theme.css?1588774708" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1588774708" rel="stylesheet">
+    <link href="/css/nucleus.css?1591890998" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1591890998" rel="stylesheet">
+    <link href="/css/hybrid.css?1591890998" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1591890998" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1591890998" rel="stylesheet">
+    <link href="/css/auto-complete.css?1591890998" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1591890998" rel="stylesheet">
+    <link href="/css/theme.css?1591890998" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1591890998" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1588774708"></script>
+    <script src="/js/jquery-3.3.1.min.js?1591890998"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -82,14 +82,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1588774708"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1588774708"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1591890998"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1591890998"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/spacevveasel.github.io\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1588774708"></script>
+<script type="text/javascript" src="/js/search.js?1591890998"></script>
 
     
   </div>
@@ -276,6 +276,30 @@ if (!doNotTrack) {
  
   
     
+    <li data-nav-id="/squid/" title="Squid" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/squid/">
+          Squid
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
     <li data-nav-id="/misc/" title="Misc" class="dd-item 
         
         
@@ -370,11 +394,22 @@ if (!doNotTrack) {
     <div class="wrapper">
 <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#collectionsconf">collections.conf</a>
       <ul>
-        <li><a href="#macrosconf">macros.conf</a></li>
+        <li></li>
       </ul>
     </li>
+    <li><a href="#transformsconf">transforms.conf</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#inputsconf">inputs.conf</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#macrosconf">macros.conf</a></li>
   </ul>
 </nav>
     </div>
@@ -401,7 +436,131 @@ if (!doNotTrack) {
 
 
 
-	<h3 id="macrosconf">macros.conf</h3>
+	<h2 id="collectionsconf">collections.conf</h2>
+<h4 id="enforcetypes--truefalse">enforceTypes = true|false</h4>
+<ul>
+<li>Indicates whether to enforce data types when inserting data into the<br>
+collection.</li>
+<li>When set to true, invalid insert operations fail.</li>
+<li>When set to false, invalid insert operations drop only the invalid field.</li>
+<li>Defaults to false.</li>
+</ul>
+<p>データ型の指定を行うか設定する。</p>
+<h4 id="fieldname--numberboolstringtime">field.&lt;name&gt; = number|bool|string|time</h4>
+<ul>
+<li>Field type for a field called <!-- raw HTML omitted -->.</li>
+<li>If the data type is not provided, the data type is inferred from the provided JSON<br>
+data type.</li>
+</ul>
+<p>データ型を指定する。<br>
+フィールド名は<a href="/splunk/configs/#transformsconf">transforms.conf</a>で定義する<a href="/splunk/configs/#fields_list--string">fields_list</a>を参照する。</p>
+<h2 id="transformsconf">transforms.conf</h2>
+<h4 id="collection--string">collection = &lt;string&gt;</h4>
+<ul>
+<li>Name of the collection to use for this lookup.</li>
+<li>Collection should be defined in $SPLUNK_HOME/etc/&lt;app_name&gt;/collections.conf<br>
+for some &lt;app_name&gt;</li>
+<li>If collection is in multiple collections.conf file, no layering is done.</li>
+<li>Standard conf file precedence is used to disambiguate.</li>
+<li>Defaults to empty string (in which case the name of the stanza is used).</li>
+</ul>
+<p>lookupとして用いるcollectionを指定する。</p>
+<h4 id="fields_list--string">fields_list = &lt;string&gt;</h4>
+<ul>
+<li>A comma- and space-delimited list of all fields that are supported by the<br>
+external command.</li>
+</ul>
+<p>transformsで用いるフィールドのリスト</p>
+<h4 id="external_type--pythonexecutablekvstoregeogeo_hex">external_type = [python|executable|kvstore|geo|geo_hex]</h4>
+<ul>
+<li>This setting describes the external lookup type.</li>
+<li>Use &lsquo;python&rsquo; for external lookups that use a python script.</li>
+<li>Use &lsquo;executable&rsquo; for external lookups that use a binary executable, such as a<br>
+C++ executable.</li>
+<li>Use &lsquo;kvstore&rsquo; for KV store lookups.</li>
+<li>Use &lsquo;geo&rsquo; for geospatial lookups.</li>
+<li>&lsquo;geo_hex&rsquo; is reserved for the geo_hex H3 lookup.</li>
+<li>Default: python</li>
+</ul>
+<p>lookupとして用いる外部ファイルを定義する。</p>
+<h2 id="inputsconf">inputs.conf</h2>
+<h4 id="host--string">host = &lt;string&gt;</h4>
+<ul>
+<li>
+<p>Sets the host key/field to a static value for this input stanza.</p>
+</li>
+<li>
+<p>The input uses this field during parsing and indexing. It also uses this<br>
+field at search time.</p>
+</li>
+<li>
+<p>As a convenience, the input prepends the chosen string with &lsquo;host::'.</p>
+</li>
+<li>
+<p>If set to &lsquo;$decideOnStartup&rsquo;, sets the field to the hostname of executing<br>
+machine. This occurs on each splunkd startup.</p>
+</li>
+<li>
+<p>If you run multiple instances of the software on the same machine (hardware<br>
+or virtual machine), choose unique values for &lsquo;host&rsquo; to differentiate<br>
+your data, ex. myhost-sh-1 or myhost-idx-2.</p>
+</li>
+<li>
+<p>Do not put the <!-- raw HTML omitted --> value in quotes. Use host=foo, not host=&quot;foo&rdquo;.</p>
+</li>
+<li>
+<p>If you set &lsquo;host&rsquo; to &ldquo;$decideOnStartup&rdquo;, you can further control how splunkd<br>
+derives the hostname by using the &lsquo;hostnameOption&rsquo; setting in server.conf.</p>
+<ul>
+<li>For example, if you want splunkd to use the fully qualified domain<br>
+name for the machine, set &ldquo;host = $decideOnStartup&rdquo; in inputs.conf and<br>
+&ldquo;hostnameOption = fullyqualifiedname&rdquo; in server.conf.</li>
+<li>More information on hostname options can be found in the server.conf<br>
+specification file.</li>
+</ul>
+</li>
+<li>
+<p>If you remove the &lsquo;host&rsquo; setting from $SPLUNK_HOME/etc/system/local/inputs.conf<br>
+or remove $SPLUNK_HOME/etc/system/local/inputs.conf, the setting changes to<br>
+&ldquo;$decideOnStartup&rdquo;. Apps that need a resolved host value should use the<br>
+&lsquo;host_resolved&rsquo; property in the response for the REST &lsquo;GET&rsquo; call of the<br>
+input source. This property is set to the hostname of the local Splunk<br>
+instance. It is a read only  property that is not written to inputs.conf.</p>
+</li>
+<li>
+<p>Default: &ldquo;$decideOnStartup&rdquo;, but at installation time, the setup logic<br>
+adds the local hostname, as determined by DNS, to the<br>
+$SPLUNK_HOME/etc/system/local/inputs.conf default stanza, which is the<br>
+effective default value.</p>
+<p>host名の指定。</p>
+</li>
+</ul>
+<h4 id="index--string">index = &lt;string&gt;</h4>
+<ul>
+<li>Sets the index to store events from this input.</li>
+<li>Primarily used to specify the index to store events that come in through<br>
+this input stanza.</li>
+<li>Default: &ldquo;main&rdquo; (or whatever you have set as your default index).</li>
+</ul>
+<p>取り込み先indexの指定</p>
+<h4 id="sourcetype--string">sourcetype = &lt;string&gt;</h4>
+<ul>
+<li>Sets the sourcetype key/field for events from this input.</li>
+<li>Explicitly declares the source type for this input instead of letting<br>
+it be determined through automated methods. This is important for<br>
+search and for applying the relevant configuration for this data type<br>
+during parsing and indexing.</li>
+<li>Sets the sourcetype key initial value. The key is used during<br>
+parsing or indexing to set the source type field during<br>
+indexing. It is also the source type field used at search time.</li>
+<li>As a convenience, the chosen string is prepended with &lsquo;sourcetype::'.</li>
+<li>Do not put the <!-- raw HTML omitted --> value in quotes: Use sourcetype=foo,<br>
+not sourcetype=&quot;foo&rdquo;.</li>
+<li>If not set, the indexer analyzes the data and chooses a source type.</li>
+<li>No default.</li>
+</ul>
+<p>sourcetypeの指定</p>
+<h2 id="macrosconf">macros.conf</h2>
 
 
 
@@ -559,6 +718,22 @@ if (!doNotTrack) {
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
         
@@ -581,19 +756,19 @@ if (!doNotTrack) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1588774708"></script>
-    <script src="/js/perfect-scrollbar.min.js?1588774708"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1588774708"></script>
-    <script src="/js/jquery.sticky.js?1588774708"></script>
-    <script src="/js/featherlight.min.js?1588774708"></script>
-    <script src="/js/highlight.pack.js?1588774708"></script>
+    <script src="/js/clipboard.min.js?1591890998"></script>
+    <script src="/js/perfect-scrollbar.min.js?1591890998"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1591890998"></script>
+    <script src="/js/jquery.sticky.js?1591890998"></script>
+    <script src="/js/featherlight.min.js?1591890998"></script>
+    <script src="/js/highlight.pack.js?1591890998"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1588774708"></script>
-    <script src="/js/learn.js?1588774708"></script>
-    <script src="/js/hugo-learn.js?1588774708"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1591890998"></script>
+    <script src="/js/learn.js?1591890998"></script>
+    <script src="/js/hugo-learn.js?1591890998"></script>
 
-    <link href="/mermaid/mermaid.css?1588774708" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1588774708"></script>
+    <link href="/mermaid/mermaid.css?1591890998" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1591890998"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
