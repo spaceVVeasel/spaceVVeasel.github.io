@@ -12,18 +12,18 @@
     <title>Logs :: 宇宙イタチのメモ</title>
 
     
-    <link href="/css/nucleus.css?1591890998" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1591890998" rel="stylesheet">
-    <link href="/css/hybrid.css?1591890998" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1591890998" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1591890998" rel="stylesheet">
-    <link href="/css/auto-complete.css?1591890998" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1591890998" rel="stylesheet">
-    <link href="/css/theme.css?1591890998" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1591890998" rel="stylesheet">
+    <link href="/css/nucleus.css?1593997953" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1593997953" rel="stylesheet">
+    <link href="/css/hybrid.css?1593997953" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1593997953" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1593997953" rel="stylesheet">
+    <link href="/css/auto-complete.css?1593997953" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1593997953" rel="stylesheet">
+    <link href="/css/theme.css?1593997953" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1593997953" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1591890998"></script>
+    <script src="/js/jquery-3.3.1.min.js?1593997953"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -82,14 +82,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1591890998"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1591890998"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1593997953"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1593997953"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/spacevveasel.github.io\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1591890998"></script>
+<script type="text/javascript" src="/js/search.js?1593997953"></script>
 
     
   </div>
@@ -398,6 +398,7 @@ if (!doNotTrack) {
       <ul>
         <li><a href="#_internalログ">_internalログ</a></li>
         <li><a href="#_introspectionログ">_introspectionログ</a></li>
+        <li><a href="#_auditログ">_auditログ</a></li>
       </ul>
     </li>
   </ul>
@@ -452,7 +453,7 @@ rest command : <code>|rest /services/server/introspection/queues</code></p>
 </li>
 </ul>
 <h4 id="bucketmover">BucketMover</h4>
-<p>バケツの状態の移行(Hot -&gt; Coold,Cold-&gt;Frozen)に関するログ。<br>
+<p>バケツの状態の移行(Hot -&gt; Cold,Cold-&gt;Frozen)に関するログ。<br>
 Frozen状態に移行する理由や、移行したバケツ情報のログが出力される。</p>
 <p>保存期間を過ぎたため削除された場合、以下のようなログが出力される。<br>
 will attempt to freeze: candidate='C:\Program Files\Splunk\var\lib\splunk_introspection\db\db_1566816331_1566816331_37&rsquo; because frozenTimePeriodInSecs=1209600 is exceeded by the difference between now=1587000072 and latest=1566816331</p>
@@ -550,6 +551,29 @@ splunk_version : Splunkバージョン<br>
 swap : スワップ領域<br>
 swap_used : スワップ使用量<br>
 rest command : <code>|rest /services/server/status/resource-usage/hostwide</code></p>
+<h3 id="_auditログ">_auditログ</h3>
+<p>splunkの_auditログはactionフィールドを確認することで分類できる。</p>
+<h4 id="search">search</h4>
+<p>サーチに関するログ<br>
+user : 実行ユーザ<br>
+savedsearch_name :
+savedsearches.confに設定されているサーチはスタンザ名が記載される。<br>
+　　　　　　　　　　ダッシュボード上で用いるbaseSearchはbaseSearch名が記載される。<br>
+search : 実行されたサーチ。<br>
+search_id : サーチID。サブサーチの場合、subsearch_&lt;元のサーチID&gt;のような値をとる。<br>
+search_et : 検索期間の最も早い時間<br>
+search_lt : 検索期間の最も遅い時間<br>
+total_run_time : サーチの処理時間<br>
+exec_time : サーチの実行時間<br>
+is_realtime : リアルタイムサーチであるか否か<br>
+result_count : サーチの結果数</p>
+<h4 id="splunkstarting">splunkStarting</h4>
+<p>Splunkの起動時に発生するログ。</p>
+<h4 id="splunkshuttingdown">splunkShuttingDown</h4>
+<p>Splunkの停止時に発生するログ。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 
 
 
@@ -748,19 +772,19 @@ rest command : <code>|rest /services/server/status/resource-usage/hostwide</code
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1591890998"></script>
-    <script src="/js/perfect-scrollbar.min.js?1591890998"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1591890998"></script>
-    <script src="/js/jquery.sticky.js?1591890998"></script>
-    <script src="/js/featherlight.min.js?1591890998"></script>
-    <script src="/js/highlight.pack.js?1591890998"></script>
+    <script src="/js/clipboard.min.js?1593997953"></script>
+    <script src="/js/perfect-scrollbar.min.js?1593997953"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1593997953"></script>
+    <script src="/js/jquery.sticky.js?1593997953"></script>
+    <script src="/js/featherlight.min.js?1593997953"></script>
+    <script src="/js/highlight.pack.js?1593997953"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1591890998"></script>
-    <script src="/js/learn.js?1591890998"></script>
-    <script src="/js/hugo-learn.js?1591890998"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1593997953"></script>
+    <script src="/js/learn.js?1593997953"></script>
+    <script src="/js/hugo-learn.js?1593997953"></script>
 
-    <link href="/mermaid/mermaid.css?1591890998" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1591890998"></script>
+    <link href="/mermaid/mermaid.css?1593997953" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1593997953"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
