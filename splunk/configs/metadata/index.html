@@ -9,21 +9,21 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Logs :: 宇宙イタチのメモ</title>
+    <title>Metadata :: 宇宙イタチのメモ</title>
 
     
-    <link href="/css/nucleus.css?1596360107" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1596360107" rel="stylesheet">
-    <link href="/css/hybrid.css?1596360107" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1596360107" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1596360107" rel="stylesheet">
-    <link href="/css/auto-complete.css?1596360107" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1596360107" rel="stylesheet">
-    <link href="/css/theme.css?1596360107" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1596360107" rel="stylesheet">
+    <link href="/css/nucleus.css?1596360106" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1596360106" rel="stylesheet">
+    <link href="/css/hybrid.css?1596360106" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1596360106" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1596360106" rel="stylesheet">
+    <link href="/css/auto-complete.css?1596360106" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1596360106" rel="stylesheet">
+    <link href="/css/theme.css?1596360106" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1596360106" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1596360107"></script>
+    <script src="/js/jquery-3.3.1.min.js?1596360106"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -47,7 +47,7 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
   </head>
-  <body class="" data-url="/splunk/logs/">
+  <body class="" data-url="/splunk/configs/metadata/">
     <nav id="sidebar" class="">
 
 
@@ -82,14 +82,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1596360107"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1596360107"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1596360106"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1596360106"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/spacevveasel.github.io\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1596360107"></script>
+<script type="text/javascript" src="/js/search.js?1596360106"></script>
 
     
   </div>
@@ -161,7 +161,7 @@ if (!doNotTrack) {
   
     
     <li data-nav-id="/splunk/configs/" title="Configs" class="dd-item 
-        
+        parent
         
         
         ">
@@ -250,7 +250,7 @@ if (!doNotTrack) {
  
   
     
-      <li data-nav-id="/splunk/configs/metadata/" title="Metadata" class="dd-item ">
+      <li data-nav-id="/splunk/configs/metadata/" title="Metadata" class="dd-item active">
         <a href="/splunk/configs/metadata/">
         Metadata
         
@@ -323,8 +323,8 @@ if (!doNotTrack) {
   
     
     <li data-nav-id="/splunk/logs/" title="Logs" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/splunk/logs/">
@@ -557,7 +557,13 @@ if (!doNotTrack) {
             
           
           
-            <a href='/'>Top Page</a> > <a href='/splunk/'>Splunk</a> > Logs
+            
+            
+          
+          
+            <a href='/'>Top Page</a> > <a href='/splunk/'>Splunk</a> > <a href='/splunk/configs/'>Configs</a> > Metadata
+          
+         
           
          
           
@@ -574,9 +580,13 @@ if (!doNotTrack) {
   <ul>
     <li>
       <ul>
-        <li><a href="#audit">audit</a></li>
-        <li><a href="#internal">internal</a></li>
-        <li><a href="#introspection">introspection</a></li>
+        <li><a href="#heading">[]</a></li>
+        <li><a href="#object_typeobject_name">[&lt;object_type&gt;/&lt;object_name&gt;]</a></li>
+        <li><a href="#access--read-roles--write-roles-">access = read:[ &lt;roles&gt; ], write[ &lt;roles&gt; ]</a></li>
+        <li><a href="#export--none--system">export = (none | system)</a></li>
+        <li><a href="#owner--user">owner = &lt;user&gt;</a></li>
+        <li><a href="#modtime--epochtime">modtime = &lt;epochtime&gt;</a></li>
+        <li><a href="#version-">version =</a></li>
       </ul>
     </li>
   </ul>
@@ -596,7 +606,7 @@ if (!doNotTrack) {
           
             <h1>
               
-              Logs
+              Metadata
             </h1>
           
 
@@ -604,22 +614,27 @@ if (!doNotTrack) {
 
 
 
+<h3 id="heading">[]</h3>
+<p>空値スタンザはAppに関する設定となる。
+Appに関する設定はmetadataファイルや明示的に指定されていないオブジェクトの設定となる。</p>
+<h3 id="object_typeobject_name">[&lt;object_type&gt;/&lt;object_name&gt;]</h3>
+<p>object_type もしくは object_nameに対しての設定。
+object_nameの方が優先される。</p>
+<h3 id="access--read-roles--write-roles-">access = read:[ &lt;roles&gt; ], write[ &lt;roles&gt; ]</h3>
+<p>ファイルの読み込み、書き込みに関する権限設定を行う。<br>
+ユーザーロール単位で設定する。</p>
+<h3 id="export--none--system">export = (none | system)</h3>
+<p>他Appへの共有設定。
+共有しない場合はnone、共有する場合はsystemとする。</p>
+<h3 id="owner--user">owner = &lt;user&gt;</h3>
+<p>所有者の設定を行う。</p>
+<h3 id="modtime--epochtime">modtime = &lt;epochtime&gt;</h3>
+<p>修正時刻</p>
+<h3 id="version-">version =</h3>
+<p>どのSplunkバージョンで設定されたかを記載する。</p>
 
-	<h3 id="audit">audit</h3>
-<p>監査関連のログ。
-ログインや実行したサーチクエリなどが確認できる。</p>
-<h3 id="internal">internal</h3>
-<p>システムログ。
-Splunkの動作ログが記載される。</p>
-<h3 id="introspection">introspection</h3>
-<p>データ系？に関するログ。
-CPUやディスク使用量、ライセンス消費に関するログが記載される。</p>
 
-
-
-
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -689,8 +704,6 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -704,6 +717,9 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -753,6 +769,26 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
                 
                 
 
@@ -780,22 +816,6 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
             
         
                     
@@ -804,7 +824,6 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
                 
                     
-                    
                 
                 
 
@@ -817,9 +836,6 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -927,10 +943,10 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
 	 
 	 
 		
-			<a class="nav nav-prev" href="/splunk/configs/transforms/" title="Transforms"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/splunk/configs/macros/" title="Macros"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/splunk/logs/audit/" title="Audit" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/splunk/configs/savedsearches/" title="Savedsearches" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

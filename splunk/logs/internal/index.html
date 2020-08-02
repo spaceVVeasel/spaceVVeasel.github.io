@@ -9,17 +9,17 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Logs :: 宇宙イタチのメモ</title>
+    <title>Internal :: 宇宙イタチのメモ</title>
 
     
-    <link href="/css/nucleus.css?1596360107" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1596360107" rel="stylesheet">
-    <link href="/css/hybrid.css?1596360107" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1596360107" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1596360107" rel="stylesheet">
-    <link href="/css/auto-complete.css?1596360107" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1596360107" rel="stylesheet">
-    <link href="/css/theme.css?1596360107" rel="stylesheet">
+    <link href="/css/nucleus.css?1596360106" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1596360106" rel="stylesheet">
+    <link href="/css/hybrid.css?1596360106" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1596360106" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1596360106" rel="stylesheet">
+    <link href="/css/auto-complete.css?1596360106" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1596360106" rel="stylesheet">
+    <link href="/css/theme.css?1596360106" rel="stylesheet">
     <link href="/css/hugo-theme.css?1596360107" rel="stylesheet">
     
 
@@ -47,7 +47,7 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
   </head>
-  <body class="" data-url="/splunk/logs/">
+  <body class="" data-url="/splunk/logs/internal/">
     <nav id="sidebar" class="">
 
 
@@ -324,7 +324,7 @@ if (!doNotTrack) {
     
     <li data-nav-id="/splunk/logs/" title="Logs" class="dd-item 
         parent
-        active
+        
         
         ">
       <a href="/splunk/logs/">
@@ -370,7 +370,7 @@ if (!doNotTrack) {
  
   
     
-      <li data-nav-id="/splunk/logs/internal/" title="Internal" class="dd-item ">
+      <li data-nav-id="/splunk/logs/internal/" title="Internal" class="dd-item active">
         <a href="/splunk/logs/internal/">
         Internal
         
@@ -557,7 +557,13 @@ if (!doNotTrack) {
             
           
           
-            <a href='/'>Top Page</a> > <a href='/splunk/'>Splunk</a> > Logs
+            
+            
+          
+          
+            <a href='/'>Top Page</a> > <a href='/splunk/'>Splunk</a> > <a href='/splunk/logs/'>Logs</a> > Internal
+          
+         
           
          
           
@@ -574,9 +580,15 @@ if (!doNotTrack) {
   <ul>
     <li>
       <ul>
-        <li><a href="#audit">audit</a></li>
-        <li><a href="#internal">internal</a></li>
-        <li><a href="#introspection">introspection</a></li>
+        <li><a href="#_internalログ">_internalログ</a></li>
+        <li><a href="#metrics">Metrics</a></li>
+        <li><a href="#bucketmover">BucketMover</a></li>
+        <li><a href="#hotbucketroller">HotBucketRoller</a></li>
+        <li><a href="#deployedserverclass">DeployedServerclass</a></li>
+        <li><a href="#inifile">IniFile</a></li>
+        <li><a href="#tailreader">TailReader</a></li>
+        <li><a href="#savedsplunker">SavedSplunker</a></li>
+        <li><a href="#licenseusage">LicenseUsage</a></li>
       </ul>
     </li>
   </ul>
@@ -596,7 +608,7 @@ if (!doNotTrack) {
           
             <h1>
               
-              Logs
+              Internal
             </h1>
           
 
@@ -604,22 +616,70 @@ if (!doNotTrack) {
 
 
 
+<h3 id="_internalログ">_internalログ</h3>
+<p>splunkの_internalログはComponentフィールドを確認することで分類できる。</p>
+<h3 id="metrics">Metrics</h3>
+<p>リソースの使用状況に関するログ。<br>
+groupによってさらに分類され、各機能の稼働状況を記録する</p>
+<ul>
+<li>
+<p><strong>bucket_metrics</strong><br>
+バケツの状況に関するログ。<br>
+現在のhotバケツの数などが確認できる。</p>
+</li>
+<li>
+<p><strong>searchscheduler</strong><br>
+Scheduling Searchesの状況に関するログ。<br>
+eligible : 実行予定のサーチ数<br>
+delayed : 遅延したサーチ数<br>
+dispatched : 実行されたサーチ数<br>
+suppressed : 抑制されえたサーチ数</p>
+</li>
+<li>
+<p><strong>queue</strong><br>
+nameを見ることで各種queueの状況を確認できる。<br>
+rest command : <code>|rest /services/server/introspection/queues</code></p>
+</li>
+</ul>
+<h3 id="bucketmover">BucketMover</h3>
+<p>バケツの状態の移行(Hot -&gt; Cold,Cold-&gt;Frozen)に関するログ。<br>
+Frozen状態に移行する理由や、移行したバケツ情報のログが出力される。</p>
+<p>保存期間を過ぎたため削除された場合、以下のようなログが出力される。<br>
+will attempt to freeze: candidate='C:\Program Files\Splunk\var\lib\splunk_introspection\db\db_1566816331_1566816331_37&rsquo; because frozenTimePeriodInSecs=1209600 is exceeded by the difference between now=1587000072 and latest=1566816331</p>
+<p>保存容量を超えたため削除された場合、以下のようなログが出力される。<br>
+will attempt to freeze bkt=&quot;C:\Program Files\Splunk\var\lib\splunk\test_delete\db\db_1573496341_1570127465_0&rdquo; reason=&rdquo; maxTotalDataSize=1048576 bytes, diskSize=7081984 bytes&rdquo;</p>
+<h3 id="hotbucketroller">HotBucketRoller</h3>
+<p>HotBucketからの移行に関するログ。<br>
+Hotから移行したバケツ情報のログが出力される。</p>
+<h3 id="deployedserverclass">DeployedServerclass</h3>
+<p>ForwarderManagementに関するログ。<br>
+Forwarderに配布したAppsの更新・削除等のログが出力される。</p>
+<h3 id="inifile">IniFile</h3>
+<p>設定ファイルに関するログ。<br>
+設定ファイルのフォーマットの記載ミス等を表示すると思われる。<br>
+Splunkの起動時等(おそらく設定ファイルの読み込み時)に出力される。</p>
+<h3 id="tailreader">TailReader</h3>
+<p>モニタリングしているファイルの末尾に関するログ。</p>
+<h3 id="savedsplunker">SavedSplunker</h3>
+<p>アラートに関するログ。<br>
+アラートの実行時・終了時に出力される。<br>
+scheduled_time(実行予定時間) : &lt;epoch_time&gt;<br>
+dispatch_time(実行時間) : &lt;epoch_time&gt;<br>
+status(実行結果) : (success|skipped)<br>
+suppressed(アラートの抑制結果) :(0|1)</p>
+<h3 id="licenseusage">LicenseUsage</h3>
+<p>ライセンスに関するログ。<br>
+typeによってさらに分類され、ライセンスグループやライセンス消費量などを記載する。</p>
+<ul>
+<li><strong>Usage</strong><br>
+idx : 取り込みインデックス<br>
+st : 取り込みソースタイプ<br>
+h : 取り込みホスト<br>
+b : ライセンス消費量(bytes)</li>
+</ul>
 
-	<h3 id="audit">audit</h3>
-<p>監査関連のログ。
-ログインや実行したサーチクエリなどが確認できる。</p>
-<h3 id="internal">internal</h3>
-<p>システムログ。
-Splunkの動作ログが記載される。</p>
-<h3 id="introspection">introspection</h3>
-<p>データ系？に関するログ。
-CPUやディスク使用量、ライセンス消費に関するログが記載される。</p>
 
-
-
-
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -837,6 +897,7 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
                 
                     
+                    
                 
                 
 
@@ -852,6 +913,9 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -927,10 +991,10 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
 	 
 	 
 		
-			<a class="nav nav-prev" href="/splunk/configs/transforms/" title="Transforms"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/splunk/logs/audit/" title="Audit"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/splunk/logs/audit/" title="Audit" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/splunk/logs/introspection/" title="Introspection" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

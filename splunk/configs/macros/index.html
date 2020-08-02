@@ -9,21 +9,21 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Logs :: 宇宙イタチのメモ</title>
+    <title>Macros :: 宇宙イタチのメモ</title>
 
     
-    <link href="/css/nucleus.css?1596360107" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1596360107" rel="stylesheet">
-    <link href="/css/hybrid.css?1596360107" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1596360107" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1596360107" rel="stylesheet">
-    <link href="/css/auto-complete.css?1596360107" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1596360107" rel="stylesheet">
-    <link href="/css/theme.css?1596360107" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1596360107" rel="stylesheet">
+    <link href="/css/nucleus.css?1596360106" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1596360106" rel="stylesheet">
+    <link href="/css/hybrid.css?1596360106" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1596360106" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1596360106" rel="stylesheet">
+    <link href="/css/auto-complete.css?1596360106" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1596360106" rel="stylesheet">
+    <link href="/css/theme.css?1596360106" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1596360106" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1596360107"></script>
+    <script src="/js/jquery-3.3.1.min.js?1596360106"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -47,7 +47,7 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
   </head>
-  <body class="" data-url="/splunk/logs/">
+  <body class="" data-url="/splunk/configs/macros/">
     <nav id="sidebar" class="">
 
 
@@ -82,14 +82,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1596360107"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1596360107"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1596360106"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1596360106"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/spacevveasel.github.io\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1596360107"></script>
+<script type="text/javascript" src="/js/search.js?1596360106"></script>
 
     
   </div>
@@ -161,7 +161,7 @@ if (!doNotTrack) {
   
     
     <li data-nav-id="/splunk/configs/" title="Configs" class="dd-item 
-        
+        parent
         
         
         ">
@@ -229,7 +229,7 @@ if (!doNotTrack) {
  
   
     
-      <li data-nav-id="/splunk/configs/macros/" title="Macros" class="dd-item ">
+      <li data-nav-id="/splunk/configs/macros/" title="Macros" class="dd-item active">
         <a href="/splunk/configs/macros/">
         Macros
         
@@ -323,8 +323,8 @@ if (!doNotTrack) {
   
     
     <li data-nav-id="/splunk/logs/" title="Logs" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/splunk/logs/">
@@ -557,7 +557,13 @@ if (!doNotTrack) {
             
           
           
-            <a href='/'>Top Page</a> > <a href='/splunk/'>Splunk</a> > Logs
+            
+            
+          
+          
+            <a href='/'>Top Page</a> > <a href='/splunk/'>Splunk</a> > <a href='/splunk/configs/'>Configs</a> > Macros
+          
+         
           
          
           
@@ -574,9 +580,12 @@ if (!doNotTrack) {
   <ul>
     <li>
       <ul>
-        <li><a href="#audit">audit</a></li>
-        <li><a href="#internal">internal</a></li>
-        <li><a href="#introspection">introspection</a></li>
+        <li><a href="#args--stringstring">args = &lt;string&gt;,&lt;string&gt;,&hellip;</a></li>
+        <li><a href="#definition--string">definition = &lt;string&gt;</a></li>
+        <li><a href="#validation--string">validation = &lt;string&gt;</a></li>
+        <li><a href="#errormsg--string">errormsg = &lt;string&gt;</a></li>
+        <li><a href="#iseval--truefalse">iseval = true|false</a></li>
+        <li><a href="#description--string">description = &lt;string&gt;</a></li>
       </ul>
     </li>
   </ul>
@@ -596,7 +605,7 @@ if (!doNotTrack) {
           
             <h1>
               
-              Logs
+              Macros
             </h1>
           
 
@@ -604,22 +613,61 @@ if (!doNotTrack) {
 
 
 
+<h3 id="args--stringstring">args = &lt;string&gt;,&lt;string&gt;,&hellip;</h3>
+<ul>
+<li>A comma-separated string of argument names.</li>
+<li>Argument names can only contain alphanumeric characters, underscores &lsquo;_', and<br>
+hyphens &lsquo;-'.</li>
+<li>If the stanza name indicates that this macro takes no arguments, this<br>
+setting is ignored.</li>
+<li>This list cannot contain any repeated elements.</li>
+</ul>
+<p>マクロで使用する引数を定義する。</p>
+<h3 id="definition--string">definition = &lt;string&gt;</h3>
+<ul>
+<li>The string that the macro will expand to, with the argument substitutions<br>
+made. (The exception is when iseval = true, see below.)</li>
+<li>Arguments to be substituted must be wrapped by dollar signs ($). For example:<br>
+&ldquo;the last part of this string will be replaced by the value of argument foo $foo$&rdquo;.</li>
+<li>Splunk software replaces the $<!-- raw HTML omitted -->$ pattern globally in the string, even<br>
+inside of quotes.</li>
+</ul>
+<p>マクロの展開後のサーチ分を定義する。また、argsにて定義した引数は&quot;$&quot;で囲んで用いる。</p>
+<h3 id="validation--string">validation = &lt;string&gt;</h3>
+<ul>
+<li>A validation string that is an &lsquo;eval&rsquo; expression.  This expression must<br>
+evaluate to a boolean or a string.</li>
+<li>Use this setting to verify that the macro&rsquo;s argument values are acceptable.</li>
+<li>If the validation expression is boolean, validation succeeds when it returns<br>
+true. If it returns false or is NULL, validation fails and Splunk software<br>
+returns the error message defined by the &lsquo;errormsg&rsquo; setting.</li>
+<li>If the validation expression is not boolean, Splunk software expects it to<br>
+return a string or NULL. If it returns NULL, validation is considered a success.<br>
+Otherwise, the string returned is the error string.</li>
+</ul>
+<p>引数の検証をおこなう。<br>
+複雑な条件も、結果が１つのTFで返ってくるように定義すれば可能。</p>
+<h3 id="errormsg--string">errormsg = &lt;string&gt;</h3>
+<ul>
+<li>The error message to be displayed if validation is a boolean expression and<br>
+it does not evaluate to true.</li>
+</ul>
+<p>validationにおいて、結果がfalseであった場合に表示するエラーメッセージを記載する。</p>
+<h3 id="iseval--truefalse">iseval = true|false</h3>
+<ul>
+<li>If &ldquo;true&rdquo;, the definition attribute is expected to be an eval expression that<br>
+returns a string representing the expansion of this macro.</li>
+<li>Default: false.</li>
+</ul>
+<p>trueにすると、&ldquo;&ldquo;で囲まずに値を返す模様(要検証)</p>
+<h3 id="description--string">description = &lt;string&gt;</h3>
+<ul>
+<li>OPTIONAL. A simple english description of what the macro does.</li>
+</ul>
+<p>マクロについての説明を記載する。</p>
 
-	<h3 id="audit">audit</h3>
-<p>監査関連のログ。
-ログインや実行したサーチクエリなどが確認できる。</p>
-<h3 id="internal">internal</h3>
-<p>システムログ。
-Splunkの動作ログが記載される。</p>
-<h3 id="introspection">introspection</h3>
-<p>データ系？に関するログ。
-CPUやディスク使用量、ライセンス消費に関するログが記載される。</p>
 
-
-
-
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -689,8 +737,6 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -704,6 +750,61 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
             
                 
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -748,19 +849,6 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
             
         
                     
@@ -777,49 +865,10 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
                     
 
                     
-            
-        
-                    
                         
             
             
                 
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 
@@ -927,10 +976,10 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
 	 
 	 
 		
-			<a class="nav nav-prev" href="/splunk/configs/transforms/" title="Transforms"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/splunk/configs/inputs/" title="Inputs"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/splunk/logs/audit/" title="Audit" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/splunk/configs/metadata/" title="Metadata" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

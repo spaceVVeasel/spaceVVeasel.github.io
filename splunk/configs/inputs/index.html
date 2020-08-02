@@ -9,21 +9,21 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Logs :: 宇宙イタチのメモ</title>
+    <title>Inputs :: 宇宙イタチのメモ</title>
 
     
-    <link href="/css/nucleus.css?1596360107" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1596360107" rel="stylesheet">
-    <link href="/css/hybrid.css?1596360107" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1596360107" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1596360107" rel="stylesheet">
-    <link href="/css/auto-complete.css?1596360107" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1596360107" rel="stylesheet">
-    <link href="/css/theme.css?1596360107" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1596360107" rel="stylesheet">
+    <link href="/css/nucleus.css?1596360106" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1596360106" rel="stylesheet">
+    <link href="/css/hybrid.css?1596360106" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1596360106" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1596360106" rel="stylesheet">
+    <link href="/css/auto-complete.css?1596360106" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1596360106" rel="stylesheet">
+    <link href="/css/theme.css?1596360106" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1596360106" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1596360107"></script>
+    <script src="/js/jquery-3.3.1.min.js?1596360106"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -47,7 +47,7 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
   </head>
-  <body class="" data-url="/splunk/logs/">
+  <body class="" data-url="/splunk/configs/inputs/">
     <nav id="sidebar" class="">
 
 
@@ -161,7 +161,7 @@ if (!doNotTrack) {
   
     
     <li data-nav-id="/splunk/configs/" title="Configs" class="dd-item 
-        
+        parent
         
         
         ">
@@ -208,7 +208,7 @@ if (!doNotTrack) {
  
   
     
-      <li data-nav-id="/splunk/configs/inputs/" title="Inputs" class="dd-item ">
+      <li data-nav-id="/splunk/configs/inputs/" title="Inputs" class="dd-item active">
         <a href="/splunk/configs/inputs/">
         Inputs
         
@@ -323,8 +323,8 @@ if (!doNotTrack) {
   
     
     <li data-nav-id="/splunk/logs/" title="Logs" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/splunk/logs/">
@@ -557,7 +557,13 @@ if (!doNotTrack) {
             
           
           
-            <a href='/'>Top Page</a> > <a href='/splunk/'>Splunk</a> > Logs
+            
+            
+          
+          
+            <a href='/'>Top Page</a> > <a href='/splunk/'>Splunk</a> > <a href='/splunk/configs/'>Configs</a> > Inputs
+          
+         
           
          
           
@@ -574,9 +580,9 @@ if (!doNotTrack) {
   <ul>
     <li>
       <ul>
-        <li><a href="#audit">audit</a></li>
-        <li><a href="#internal">internal</a></li>
-        <li><a href="#introspection">introspection</a></li>
+        <li><a href="#host--string">host = &lt;string&gt;</a></li>
+        <li><a href="#index--string">index = &lt;string&gt;</a></li>
+        <li><a href="#sourcetype--string">sourcetype = &lt;string&gt;</a></li>
       </ul>
     </li>
   </ul>
@@ -596,7 +602,7 @@ if (!doNotTrack) {
           
             <h1>
               
-              Logs
+              Inputs
             </h1>
           
 
@@ -604,22 +610,85 @@ if (!doNotTrack) {
 
 
 
+<h3 id="host--string">host = &lt;string&gt;</h3>
+<ul>
+<li>
+<p>Sets the host key/field to a static value for this input stanza.</p>
+</li>
+<li>
+<p>The input uses this field during parsing and indexing. It also uses this<br>
+field at search time.</p>
+</li>
+<li>
+<p>As a convenience, the input prepends the chosen string with &lsquo;host::'.</p>
+</li>
+<li>
+<p>If set to &lsquo;$decideOnStartup&rsquo;, sets the field to the hostname of executing<br>
+machine. This occurs on each splunkd startup.</p>
+</li>
+<li>
+<p>If you run multiple instances of the software on the same machine (hardware<br>
+or virtual machine), choose unique values for &lsquo;host&rsquo; to differentiate<br>
+your data, ex. myhost-sh-1 or myhost-idx-2.</p>
+</li>
+<li>
+<p>Do not put the <!-- raw HTML omitted --> value in quotes. Use host=foo, not host=&quot;foo&rdquo;.</p>
+</li>
+<li>
+<p>If you set &lsquo;host&rsquo; to &ldquo;$decideOnStartup&rdquo;, you can further control how splunkd<br>
+derives the hostname by using the &lsquo;hostnameOption&rsquo; setting in server.conf.</p>
+<ul>
+<li>For example, if you want splunkd to use the fully qualified domain<br>
+name for the machine, set &ldquo;host = $decideOnStartup&rdquo; in inputs.conf and<br>
+&ldquo;hostnameOption = fullyqualifiedname&rdquo; in server.conf.</li>
+<li>More information on hostname options can be found in the server.conf<br>
+specification file.</li>
+</ul>
+</li>
+<li>
+<p>If you remove the &lsquo;host&rsquo; setting from $SPLUNK_HOME/etc/system/local/inputs.conf<br>
+or remove $SPLUNK_HOME/etc/system/local/inputs.conf, the setting changes to<br>
+&ldquo;$decideOnStartup&rdquo;. Apps that need a resolved host value should use the<br>
+&lsquo;host_resolved&rsquo; property in the response for the REST &lsquo;GET&rsquo; call of the<br>
+input source. This property is set to the hostname of the local Splunk<br>
+instance. It is a read only  property that is not written to inputs.conf.</p>
+</li>
+<li>
+<p>Default: &ldquo;$decideOnStartup&rdquo;, but at installation time, the setup logic<br>
+adds the local hostname, as determined by DNS, to the<br>
+$SPLUNK_HOME/etc/system/local/inputs.conf default stanza, which is the<br>
+effective default value.</p>
+<p>host名の指定。</p>
+</li>
+</ul>
+<h3 id="index--string">index = &lt;string&gt;</h3>
+<ul>
+<li>Sets the index to store events from this input.</li>
+<li>Primarily used to specify the index to store events that come in through<br>
+this input stanza.</li>
+<li>Default: &ldquo;main&rdquo; (or whatever you have set as your default index).</li>
+</ul>
+<p>取り込み先indexの指定</p>
+<h3 id="sourcetype--string">sourcetype = &lt;string&gt;</h3>
+<ul>
+<li>Sets the sourcetype key/field for events from this input.</li>
+<li>Explicitly declares the source type for this input instead of letting<br>
+it be determined through automated methods. This is important for<br>
+search and for applying the relevant configuration for this data type<br>
+during parsing and indexing.</li>
+<li>Sets the sourcetype key initial value. The key is used during<br>
+parsing or indexing to set the source type field during<br>
+indexing. It is also the source type field used at search time.</li>
+<li>As a convenience, the chosen string is prepended with &lsquo;sourcetype::'.</li>
+<li>Do not put the <!-- raw HTML omitted --> value in quotes: Use sourcetype=foo,<br>
+not sourcetype=&quot;foo&rdquo;.</li>
+<li>If not set, the indexer analyzes the data and chooses a source type.</li>
+<li>No default.</li>
+</ul>
+<p>sourcetypeの指定</p>
 
-	<h3 id="audit">audit</h3>
-<p>監査関連のログ。
-ログインや実行したサーチクエリなどが確認できる。</p>
-<h3 id="internal">internal</h3>
-<p>システムログ。
-Splunkの動作ログが記載される。</p>
-<h3 id="introspection">introspection</h3>
-<p>データ系？に関するログ。
-CPUやディスク使用量、ライセンス消費に関するログが記載される。</p>
 
-
-
-
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -689,8 +758,6 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -704,6 +771,45 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
             
                 
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -764,19 +870,6 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
             
         
                     
@@ -793,33 +886,10 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
                     
 
                     
-            
-        
-                    
-            
-        
-                    
                         
             
             
                 
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 
@@ -927,10 +997,10 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
 	 
 	 
 		
-			<a class="nav nav-prev" href="/splunk/configs/transforms/" title="Transforms"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/splunk/configs/collections/" title="Collections"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/splunk/logs/audit/" title="Audit" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/splunk/configs/macros/" title="Macros" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

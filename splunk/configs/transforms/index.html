@@ -9,21 +9,21 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Logs :: 宇宙イタチのメモ</title>
+    <title>Transforms :: 宇宙イタチのメモ</title>
 
     
-    <link href="/css/nucleus.css?1596360107" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1596360107" rel="stylesheet">
-    <link href="/css/hybrid.css?1596360107" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1596360107" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1596360107" rel="stylesheet">
-    <link href="/css/auto-complete.css?1596360107" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1596360107" rel="stylesheet">
-    <link href="/css/theme.css?1596360107" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1596360107" rel="stylesheet">
+    <link href="/css/nucleus.css?1596360106" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1596360106" rel="stylesheet">
+    <link href="/css/hybrid.css?1596360106" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1596360106" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1596360106" rel="stylesheet">
+    <link href="/css/auto-complete.css?1596360106" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1596360106" rel="stylesheet">
+    <link href="/css/theme.css?1596360106" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1596360106" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1596360107"></script>
+    <script src="/js/jquery-3.3.1.min.js?1596360106"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -47,7 +47,7 @@ if (!doNotTrack) {
 <script async src='https://www.google-analytics.com/analytics.js'></script>
 
   </head>
-  <body class="" data-url="/splunk/logs/">
+  <body class="" data-url="/splunk/configs/transforms/">
     <nav id="sidebar" class="">
 
 
@@ -82,14 +82,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1596360107"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1596360107"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1596360106"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1596360106"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/spacevveasel.github.io\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1596360107"></script>
+<script type="text/javascript" src="/js/search.js?1596360106"></script>
 
     
   </div>
@@ -161,7 +161,7 @@ if (!doNotTrack) {
   
     
     <li data-nav-id="/splunk/configs/" title="Configs" class="dd-item 
-        
+        parent
         
         
         ">
@@ -292,7 +292,7 @@ if (!doNotTrack) {
  
   
     
-      <li data-nav-id="/splunk/configs/transforms/" title="Transforms" class="dd-item ">
+      <li data-nav-id="/splunk/configs/transforms/" title="Transforms" class="dd-item active">
         <a href="/splunk/configs/transforms/">
         Transforms
         
@@ -323,8 +323,8 @@ if (!doNotTrack) {
   
     
     <li data-nav-id="/splunk/logs/" title="Logs" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/splunk/logs/">
@@ -557,7 +557,13 @@ if (!doNotTrack) {
             
           
           
-            <a href='/'>Top Page</a> > <a href='/splunk/'>Splunk</a> > Logs
+            
+            
+          
+          
+            <a href='/'>Top Page</a> > <a href='/splunk/'>Splunk</a> > <a href='/splunk/configs/'>Configs</a> > Transforms
+          
+         
           
          
           
@@ -574,9 +580,9 @@ if (!doNotTrack) {
   <ul>
     <li>
       <ul>
-        <li><a href="#audit">audit</a></li>
-        <li><a href="#internal">internal</a></li>
-        <li><a href="#introspection">introspection</a></li>
+        <li><a href="#collection--string">collection = &lt;string&gt;</a></li>
+        <li><a href="#fields_list--string">fields_list = &lt;string&gt;</a></li>
+        <li><a href="#external_type--pythonexecutablekvstoregeogeo_hex">external_type = [python|executable|kvstore|geo|geo_hex]</a></li>
       </ul>
     </li>
   </ul>
@@ -596,7 +602,7 @@ if (!doNotTrack) {
           
             <h1>
               
-              Logs
+              Transforms
             </h1>
           
 
@@ -604,22 +610,37 @@ if (!doNotTrack) {
 
 
 
+<h3 id="collection--string">collection = &lt;string&gt;</h3>
+<ul>
+<li>Name of the collection to use for this lookup.</li>
+<li>Collection should be defined in $SPLUNK_HOME/etc/&lt;app_name&gt;/collections.conf<br>
+for some &lt;app_name&gt;</li>
+<li>If collection is in multiple collections.conf file, no layering is done.</li>
+<li>Standard conf file precedence is used to disambiguate.</li>
+<li>Defaults to empty string (in which case the name of the stanza is used).</li>
+</ul>
+<p>lookupとして用いるcollectionを指定する。</p>
+<h3 id="fields_list--string">fields_list = &lt;string&gt;</h3>
+<ul>
+<li>A comma- and space-delimited list of all fields that are supported by the<br>
+external command.</li>
+</ul>
+<p>transformsで用いるフィールドのリスト</p>
+<h3 id="external_type--pythonexecutablekvstoregeogeo_hex">external_type = [python|executable|kvstore|geo|geo_hex]</h3>
+<ul>
+<li>This setting describes the external lookup type.</li>
+<li>Use &lsquo;python&rsquo; for external lookups that use a python script.</li>
+<li>Use &lsquo;executable&rsquo; for external lookups that use a binary executable, such as a<br>
+C++ executable.</li>
+<li>Use &lsquo;kvstore&rsquo; for KV store lookups.</li>
+<li>Use &lsquo;geo&rsquo; for geospatial lookups.</li>
+<li>&lsquo;geo_hex&rsquo; is reserved for the geo_hex H3 lookup.</li>
+<li>Default: python</li>
+</ul>
+<p>lookupとして用いる外部ファイルを定義する。</p>
 
-	<h3 id="audit">audit</h3>
-<p>監査関連のログ。
-ログインや実行したサーチクエリなどが確認できる。</p>
-<h3 id="internal">internal</h3>
-<p>システムログ。
-Splunkの動作ログが記載される。</p>
-<h3 id="introspection">introspection</h3>
-<p>データ系？に関するログ。
-CPUやディスク使用量、ライセンス消費に関するログが記載される。</p>
 
-
-
-
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -689,8 +710,6 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -704,6 +723,9 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -785,6 +807,7 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
                 
                     
+                    
                 
                 
 
@@ -804,6 +827,8 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
                 
                     
+                        
+                        
                     
                 
                 
@@ -817,9 +842,6 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -927,10 +949,10 @@ CPUやディスク使用量、ライセンス消費に関するログが記載�
 	 
 	 
 		
-			<a class="nav nav-prev" href="/splunk/configs/transforms/" title="Transforms"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/splunk/configs/savedsearches/" title="Savedsearches"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/splunk/logs/audit/" title="Audit" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/splunk/logs/" title="Logs" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

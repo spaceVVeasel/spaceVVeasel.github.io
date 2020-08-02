@@ -11,5 +11,32 @@
 	<atom:link href="https://spacevveasel.github.io/splunk/logs/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>Audit</title>
+      <link>https://spacevveasel.github.io/splunk/logs/audit/</link>
+      <pubDate>Sun, 02 Aug 2020 15:45:19 +0900</pubDate>
+      
+      <guid>https://spacevveasel.github.io/splunk/logs/audit/</guid>
+      <description>splunkの_auditログはactionフィールドを確認することで分類できる。 search サーチに関するログ user : 実行ユーザ savedsearch_name : savedsearc</description>
+    </item>
+    
+    <item>
+      <title>Internal</title>
+      <link>https://spacevveasel.github.io/splunk/logs/internal/</link>
+      <pubDate>Sun, 02 Aug 2020 15:45:11 +0900</pubDate>
+      
+      <guid>https://spacevveasel.github.io/splunk/logs/internal/</guid>
+      <description>_internalログ splunkの_internalログはComponentフィールドを確認することで分類できる。 Metrics リソースの使用状況に関</description>
+    </item>
+    
+    <item>
+      <title>Introspection</title>
+      <link>https://spacevveasel.github.io/splunk/logs/introspection/</link>
+      <pubDate>Sun, 02 Aug 2020 15:45:30 +0900</pubDate>
+      
+      <guid>https://spacevveasel.github.io/splunk/logs/introspection/</guid>
+      <description>_introspectionログ splunkの_introspectionログはComponentフィールドを確認することで分類できる。 また</description>
+    </item>
+    
   </channel>
 </rss>

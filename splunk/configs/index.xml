@@ -12,12 +12,57 @@
     
     
     <item>
+      <title>Collections</title>
+      <link>https://spacevveasel.github.io/splunk/configs/collections/</link>
+      <pubDate>Sat, 01 Aug 2020 15:49:10 +0900</pubDate>
+      
+      <guid>https://spacevveasel.github.io/splunk/configs/collections/</guid>
+      <description>enforceTypes = true|false Indicates whether to enforce data types when inserting data into the collection. When set to true, invalid insert operations fail. When set to false, invalid insert operations drop only the invalid field. Defaults to false. データ型の指定を行うか設定する。 field.&amp;lt;name&amp;gt; = number|bool|string|time Field type for a field called . If the data type is not</description>
+    </item>
+    
+    <item>
+      <title>Inputs</title>
+      <link>https://spacevveasel.github.io/splunk/configs/inputs/</link>
+      <pubDate>Sat, 01 Aug 2020 15:50:54 +0900</pubDate>
+      
+      <guid>https://spacevveasel.github.io/splunk/configs/inputs/</guid>
+      <description>host = &amp;lt;string&amp;gt; Sets the host key/field to a static value for this input stanza. The input uses this field during parsing and indexing. It also uses this field at search time. As a convenience, the input prepends the chosen string with &amp;lsquo;host::&#39;. If set to &amp;lsquo;$decideOnStartup&amp;rsquo;, sets the field to the hostname of executing machine. This occurs on each splunkd startup. If you run multiple instances of the software</description>
+    </item>
+    
+    <item>
+      <title>Macros</title>
+      <link>https://spacevveasel.github.io/splunk/configs/macros/</link>
+      <pubDate>Sat, 01 Aug 2020 15:47:34 +0900</pubDate>
+      
+      <guid>https://spacevveasel.github.io/splunk/configs/macros/</guid>
+      <description>args = &amp;lt;string&amp;gt;,&amp;lt;string&amp;gt;,&amp;hellip; A comma-separated string of argument names. Argument names can only contain alphanumeric characters, underscores &amp;lsquo;_&#39;, and hyphens &amp;lsquo;-&#39;. If the stanza name indicates that this macro takes no arguments, this setting is ignored. This list cannot contain any repeated elements. マクロで使用する引数を定義する。 definition = &amp;lt;string&amp;gt; The string that the macro will expand to,</description>
+    </item>
+    
+    <item>
+      <title>Metadata</title>
+      <link>https://spacevveasel.github.io/splunk/configs/metadata/</link>
+      <pubDate>Sat, 01 Aug 2020 17:43:33 +0900</pubDate>
+      
+      <guid>https://spacevveasel.github.io/splunk/configs/metadata/</guid>
+      <description>[] 空値スタンザはAppに関する設定となる。 Appに関する設定はmetadataファイルや明示的に指定されていないオブジェクトの設定となる。 [&amp;lt;object_type&amp;gt;/&amp;lt;object_name&amp;gt;]</description>
+    </item>
+    
+    <item>
       <title>Savedsearches</title>
       <link>https://spacevveasel.github.io/splunk/configs/savedsearches/</link>
       <pubDate>Sat, 21 Mar 2020 17:14:08 +0900</pubDate>
       
       <guid>https://spacevveasel.github.io/splunk/configs/savedsearches/</guid>
-      <description>savedsearches.conf search = &amp;lt;string&amp;gt; The actual search string for the saved search. For example, &amp;lsquo;search = index::sampledata http NOT 500&amp;rsquo;. Your search can include macro searches for substitution. To learn more about creating a macro search, search the documentation for &amp;ldquo;macro search.&amp;rdquo; Multi-line search strings currently have some limitations. For example use with the search command &amp;lsquo;|savedsearch&amp;rsquo; does not currently work with multi-line search strings. No default. 実行す</description>
+      <description>search = &amp;lt;string&amp;gt; The actual search string for the saved search. For example, &amp;lsquo;search = index::sampledata http NOT 500&amp;rsquo;. Your search can include macro searches for substitution. To learn more about creating a macro search, search the documentation for &amp;ldquo;macro search.&amp;rdquo; Multi-line search strings currently have some limitations. For example use with the search command &amp;lsquo;|savedsearch&amp;rsquo; does not currently work with multi-line search strings. No default. 実行する</description>
+    </item>
+    
+    <item>
+      <title>Transforms</title>
+      <link>https://spacevveasel.github.io/splunk/configs/transforms/</link>
+      <pubDate>Sat, 01 Aug 2020 15:54:16 +0900</pubDate>
+      
+      <guid>https://spacevveasel.github.io/splunk/configs/transforms/</guid>
+      <description>collection = &amp;lt;string&amp;gt; Name of the collection to use for this lookup. Collection should be defined in $SPLUNK_HOME/etc/&amp;lt;app_name&amp;gt;/collections.conf for some &amp;lt;app_name&amp;gt; If collection is in multiple collections.conf file, no layering is done. Standard conf file precedence is used to disambiguate. Defaults to empty string (in which case the name of the stanza is used). lookupとして用いるcoll</description>
     </item>
     
   </channel>
