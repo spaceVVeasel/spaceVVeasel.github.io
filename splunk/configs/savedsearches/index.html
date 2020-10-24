@@ -12,18 +12,18 @@
     <title>Savedsearches :: 宇宙イタチのメモ</title>
 
     
-    <link href="/css/nucleus.css?1596360106" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1596360106" rel="stylesheet">
-    <link href="/css/hybrid.css?1596360106" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1596360106" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1596360106" rel="stylesheet">
-    <link href="/css/auto-complete.css?1596360106" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1596360106" rel="stylesheet">
-    <link href="/css/theme.css?1596360106" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1596360106" rel="stylesheet">
+    <link href="/css/nucleus.css?1603553936" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1603553936" rel="stylesheet">
+    <link href="/css/hybrid.css?1603553936" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1603553936" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1603553936" rel="stylesheet">
+    <link href="/css/auto-complete.css?1603553936" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1603553936" rel="stylesheet">
+    <link href="/css/theme.css?1603553936" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1603553936" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1596360106"></script>
+    <script src="/js/jquery-3.3.1.min.js?1603553936"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -82,14 +82,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1596360106"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1596360106"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1603553936"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1603553936"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/spacevveasel.github.io\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1596360106"></script>
+<script type="text/javascript" src="/js/search.js?1603553936"></script>
 
     
   </div>
@@ -588,6 +588,7 @@ if (!doNotTrack) {
         <li><a href="#relation---greater-than--less-than--equal-to--not-equal-to--drops-by--rises-by-">relation = [ greater than | less than | equal to | not equal to | drops by | rises by ]</a></li>
         <li><a href="#quantity--integer">quantity = &lt;integer&gt;</a></li>
         <li><a href="#actionsummary_index--0--1">action.summary_index = 0 | 1</a></li>
+        <li><a href="#actionsummary_indexinline--boolean">action.summary_index.inline = &lt;boolean&gt;</a></li>
         <li><a href="#actionsummary_index_name--index">action.summary_index._name = &lt;index&gt;</a></li>
         <li><a href="#dispatchearliest_time--time-str">dispatch.earliest_time = &lt;time-str&gt;</a></li>
         <li><a href="#dispatchlatest_time--time-str">dispatch.latest_time = &lt;time-str&gt;</a></li>
@@ -595,7 +596,9 @@ if (!doNotTrack) {
         <li><a href="#dispatchindex_latest-time-str">dispatch.index_latest= &lt;time-str&gt;</a></li>
         <li><a href="#alertsuppress--0--1">alert.suppress = 0 | 1</a></li>
         <li><a href="#alertsuppressperiod--time-specifier">alert.suppress.period = &lt;time-specifier&gt;</a></li>
+        <li><a href="#alertdigest_mode--boolean">alert.digest_mode = &lt;boolean&gt;</a></li>
         <li><a href="#alerttrack--boolean--auto">alert.track = &lt;boolean&gt; | auto</a></li>
+        <li><a href="#alertexpires--time-specifier">alert.expires = &lt;time-specifier&gt;</a></li>
       </ul>
     </li>
   </ul>
@@ -729,7 +732,7 @@ only for mission-critical searches.</li>
 <li>Default: default</li>
 </ul>
 <p>アラートに優先度を設定する。<br>
-本当に必要なものにだけ、設定しないと意味がなくなる。</p>
+必要なものにだけ、設定しないと効果が低い。</p>
 <h3 id="counttype---number-of-events--number-of-hosts--number-of-sources--custom--always-">counttype = [ number of events | number of hosts | number of sources | custom | always ]</h3>
 <ul>
 <li>Set the type of count for alerting.</li>
@@ -768,6 +771,15 @@ events drops by 10%.</li>
 <li>Default: 0</li>
 </ul>
 <p>アラートの結果をサマリインデックスに出力する。</p>
+<h3 id="actionsummary_indexinline--boolean">action.summary_index.inline = &lt;boolean&gt;</h3>
+<ul>
+<li>Specify whether to run the summary indexing action as part of the<br>
+scheduled search.</li>
+<li>NOTE: This option is considered only if the summary index action is enabled<br>
+and is always run (in other words, if &lsquo;counttype = always&rsquo;).</li>
+<li>Default: 1 (true)</li>
+</ul>
+<p>アラートの結果を表示する際に、サーチ文にsummaryindexコマンドを追加して表示する。</p>
 <h3 id="actionsummary_index_name--index">action.summary_index._name = &lt;index&gt;</h3>
 <ul>
 <li>Specifies the name of the summary index where the results of the scheduled<br>
@@ -829,6 +841,13 @@ _index_timeの最新の時間を指定する。</p>
 <li>Default: empty string</li>
 </ul>
 <p>アラートの抑制期間を設定する。</p>
+<h3 id="alertdigest_mode--boolean">alert.digest_mode = &lt;boolean&gt;</h3>
+<ul>
+<li>Specifies whether Splunk applies the alert actions to the entire result set<br>
+or to each individual result.</li>
+<li>Default: true</li>
+</ul>
+<p>アラートによる出力結果をまとめて出力するか、個別に出力するかを設定する。</p>
 <h3 id="alerttrack--boolean--auto">alert.track = &lt;boolean&gt; | auto</h3>
 <ul>
 <li>Specifies whether to track the actions triggered by this scheduled search.
@@ -843,6 +862,22 @@ each action, do not track scheduled searches that always trigger actions.</li>
 </ul>
 <p>アラートを追跡するかどうか設定する。<br>
 この設定が auto の場合、counttype の設定値が always の時は追跡しない。</p>
+<h3 id="alertexpires--time-specifier">alert.expires = &lt;time-specifier&gt;</h3>
+<ul>
+<li>Sets the period of time to show the alert on the Triggered Alerts page.
+<ul>
+<li>Use [number][time-unit] to specify a time.</li>
+<li>For example: 60s = 60 seconds, 1m = 1 minute, 1h = 60 minutes = 1 hour etc</li>
+</ul>
+</li>
+<li>This setting is only honored when &lsquo;alert.track = true&rsquo; (when the &ldquo;Add to<br>
+Triggered Alerts&rdquo; action is selected for the alert in Splunk Web).</li>
+<li>This property is valid until splunkd restarts. Restart clears the listing of<br>
+triggered alerts.</li>
+<li>Default: 24h</li>
+</ul>
+<p>Triggered Alertsとして記録するアラートの期間を設定する。<br>
+※この機能を適用するためにはSplunkdの再起動が必要である。</p>
 
 
 <footer class="footline">
@@ -1167,19 +1202,19 @@ each action, do not track scheduled searches that always trigger actions.</li>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1596360107"></script>
-    <script src="/js/perfect-scrollbar.min.js?1596360107"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1596360107"></script>
-    <script src="/js/jquery.sticky.js?1596360107"></script>
-    <script src="/js/featherlight.min.js?1596360107"></script>
-    <script src="/js/highlight.pack.js?1596360107"></script>
+    <script src="/js/clipboard.min.js?1603553936"></script>
+    <script src="/js/perfect-scrollbar.min.js?1603553936"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1603553936"></script>
+    <script src="/js/jquery.sticky.js?1603553936"></script>
+    <script src="/js/featherlight.min.js?1603553936"></script>
+    <script src="/js/highlight.pack.js?1603553936"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1596360107"></script>
-    <script src="/js/learn.js?1596360107"></script>
-    <script src="/js/hugo-learn.js?1596360107"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1603553936"></script>
+    <script src="/js/learn.js?1603553936"></script>
+    <script src="/js/hugo-learn.js?1603553936"></script>
 
-    <link href="/mermaid/mermaid.css?1596360107" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1596360107"></script>
+    <link href="/mermaid/mermaid.css?1603553936" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1603553936"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
