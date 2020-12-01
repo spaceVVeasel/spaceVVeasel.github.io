@@ -12,18 +12,18 @@
     <title>Savedsearches :: 宇宙イタチのメモ</title>
 
     
-    <link href="/css/nucleus.css?1603553936" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1603553936" rel="stylesheet">
-    <link href="/css/hybrid.css?1603553936" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1603553936" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1603553936" rel="stylesheet">
-    <link href="/css/auto-complete.css?1603553936" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1603553936" rel="stylesheet">
-    <link href="/css/theme.css?1603553936" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1603553936" rel="stylesheet">
+    <link href="/css/nucleus.css?1606827933" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1606827933" rel="stylesheet">
+    <link href="/css/hybrid.css?1606827933" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1606827933" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1606827933" rel="stylesheet">
+    <link href="/css/auto-complete.css?1606827933" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1606827933" rel="stylesheet">
+    <link href="/css/theme.css?1606827933" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1606827933" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1603553936"></script>
+    <script src="/js/jquery-3.3.1.min.js?1606827933"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -82,14 +82,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1603553936"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1603553936"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1606827933"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1606827933"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/spacevveasel.github.io\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1603553936"></script>
+<script type="text/javascript" src="/js/search.js?1606827933"></script>
 
     
   </div>
@@ -640,6 +640,7 @@ search strings.</li>
 </ul>
 <p>実行するサーチ文を入力する。<br>
 サーチ文をconf内で改行する際は、行末に&rdquo;&quot;を入力する。</p>
+<hr>
 <h3 id="cron_schedule--cron-string">cron_schedule = &lt;cron string&gt;</h3>
 <ul>
 <li>The cron schedule that is used to run this search.</li>
@@ -657,6 +658,7 @@ months or days.</li>
 <li>No default.</li>
 </ul>
 <p>実行時間をcron形式で入力する。</p>
+<hr>
 <h3 id="realtime_schedule--01">realtime_schedule = [0|1]</h3>
 <ul>
 <li>Controls the way the scheduler computes the next run time of a<br>
@@ -686,6 +688,7 @@ before it runs searches that have continuous scheduling<br>
 </ul>
 <p>0に設定するとアラートをスキップしないが実行が遅れる場合がある。<br>
 1に設定するとアラートはスキップされる。</p>
+<hr>
 <h3 id="schedule_priority---default--higher--highest-">schedule_priority = [ default | higher | highest ]</h3>
 <ul>
 <li>Raises the scheduling priority of a search:
@@ -733,6 +736,7 @@ only for mission-critical searches.</li>
 </ul>
 <p>アラートに優先度を設定する。<br>
 必要なものにだけ、設定しないと効果が低い。</p>
+<hr>
 <h3 id="counttype---number-of-events--number-of-hosts--number-of-sources--custom--always-">counttype = [ number of events | number of hosts | number of sources | custom | always ]</h3>
 <ul>
 <li>Set the type of count for alerting.</li>
@@ -741,12 +745,14 @@ only for mission-critical searches.</li>
 <li>Default: always</li>
 </ul>
 <p>&ldquo;relation&rdquo;、&ldquo;quantity&quot;とセットで用いる。</p>
+<hr>
 <h3 id="relation---greater-than--less-than--equal-to--not-equal-to--drops-by--rises-by-">relation = [ greater than | less than | equal to | not equal to | drops by | rises by ]</h3>
 <ul>
 <li>Specifies how to compare against &lsquo;counttype&rsquo;.</li>
 <li>Default: empty string</li>
 </ul>
 <p>&ldquo;counttype&rdquo;、&ldquo;quantity&quot;とセットで用いる。</p>
+<hr>
 <h3 id="quantity--integer">quantity = &lt;integer&gt;</h3>
 <ul>
 <li>Specifies a value for the &lsquo;counttype&rsquo; and &lsquo;relation&rsquo;, to determine the condition<br>
@@ -764,6 +770,7 @@ events drops by 10%.</li>
 <p>&ldquo;counttype&rdquo;、&ldquo;relation&quot;とセットで用いる。<br>
 イメージとしては、&lt;counttype&gt; &lt;relation&gt; &lt;quantity&gt;.<br>
 アラートの発砲条件として、設定する。</p>
+<hr>
 <h3 id="actionsummary_index--0--1">action.summary_index = 0 | 1</h3>
 <ul>
 <li>Enables or disables the summary index action.</li>
@@ -771,6 +778,7 @@ events drops by 10%.</li>
 <li>Default: 0</li>
 </ul>
 <p>アラートの結果をサマリインデックスに出力する。</p>
+<hr>
 <h3 id="actionsummary_indexinline--boolean">action.summary_index.inline = &lt;boolean&gt;</h3>
 <ul>
 <li>Specify whether to run the summary indexing action as part of the<br>
@@ -780,6 +788,7 @@ and is always run (in other words, if &lsquo;counttype = always&rsquo;).</li>
 <li>Default: 1 (true)</li>
 </ul>
 <p>アラートの結果を表示する際に、サーチ文にsummaryindexコマンドを追加して表示する。</p>
+<hr>
 <h3 id="actionsummary_index_name--index">action.summary_index._name = &lt;index&gt;</h3>
 <ul>
 <li>Specifies the name of the summary index where the results of the scheduled<br>
@@ -787,6 +796,7 @@ search are saved.</li>
 <li>Default: summary</li>
 </ul>
 <p>出力するサマリインデックスを指定する。</p>
+<hr>
 <h3 id="dispatchearliest_time--time-str">dispatch.earliest_time = &lt;time-str&gt;</h3>
 <ul>
 <li>Specifies the earliest time for this search. Can be a relative or absolute<br>
@@ -797,6 +807,7 @@ to format the value.</li>
 </ul>
 <p>サーチの検索範囲を決定する。<br>
 _timeの最古の時間を指定する。</p>
+<hr>
 <h3 id="dispatchlatest_time--time-str">dispatch.latest_time = &lt;time-str&gt;</h3>
 <ul>
 <li>Specifies the latest time for this saved search. Can be a relative or<br>
@@ -807,6 +818,7 @@ to format the value.</li>
 </ul>
 <p>サーチの検索範囲を決定する。<br>
 _timeの最新の時間を指定する。</p>
+<hr>
 <h3 id="dispatchindex_earliest-time-str">dispatch.index_earliest= &lt;time-str&gt;</h3>
 <ul>
 <li>Specifies the earliest index time for this search. Can be a relative or<br>
@@ -817,6 +829,7 @@ to format the value.</li>
 </ul>
 <p>サーチの検索範囲を決定する。<br>
 _index_timeの最古の時間を指定する。</p>
+<hr>
 <h3 id="dispatchindex_latest-time-str">dispatch.index_latest= &lt;time-str&gt;</h3>
 <ul>
 <li>Specifies the latest index time for this saved search. Can be a relative or<br>
@@ -827,12 +840,14 @@ to format the value.</li>
 </ul>
 <p>サーチの検索範囲を決定する。<br>
 _index_timeの最新の時間を指定する。</p>
+<hr>
 <h3 id="alertsuppress--0--1">alert.suppress = 0 | 1</h3>
 <ul>
 <li>Specifies whether alert suppression is enabled for this scheduled search.</li>
 <li>Default: 0 (false)</li>
 </ul>
 <p>アラートを抑制するかどうか決定する。</p>
+<hr>
 <h3 id="alertsuppressperiod--time-specifier">alert.suppress.period = &lt;time-specifier&gt;</h3>
 <ul>
 <li>Sets the suppression period. Use [number][time-unit] to specify a time.</li>
@@ -841,6 +856,7 @@ _index_timeの最新の時間を指定する。</p>
 <li>Default: empty string</li>
 </ul>
 <p>アラートの抑制期間を設定する。</p>
+<hr>
 <h3 id="alertdigest_mode--boolean">alert.digest_mode = &lt;boolean&gt;</h3>
 <ul>
 <li>Specifies whether Splunk applies the alert actions to the entire result set<br>
@@ -848,6 +864,7 @@ or to each individual result.</li>
 <li>Default: true</li>
 </ul>
 <p>アラートによる出力結果をまとめて出力するか、個別に出力するかを設定する。</p>
+<hr>
 <h3 id="alerttrack--boolean--auto">alert.track = &lt;boolean&gt; | auto</h3>
 <ul>
 <li>Specifies whether to track the actions triggered by this scheduled search.
@@ -862,6 +879,7 @@ each action, do not track scheduled searches that always trigger actions.</li>
 </ul>
 <p>アラートを追跡するかどうか設定する。<br>
 この設定が auto の場合、counttype の設定値が always の時は追跡しない。</p>
+<hr>
 <h3 id="alertexpires--time-specifier">alert.expires = &lt;time-specifier&gt;</h3>
 <ul>
 <li>Sets the period of time to show the alert on the Triggered Alerts page.
@@ -1202,19 +1220,19 @@ triggered alerts.</li>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1603553936"></script>
-    <script src="/js/perfect-scrollbar.min.js?1603553936"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1603553936"></script>
-    <script src="/js/jquery.sticky.js?1603553936"></script>
-    <script src="/js/featherlight.min.js?1603553936"></script>
-    <script src="/js/highlight.pack.js?1603553936"></script>
+    <script src="/js/clipboard.min.js?1606827933"></script>
+    <script src="/js/perfect-scrollbar.min.js?1606827933"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1606827933"></script>
+    <script src="/js/jquery.sticky.js?1606827933"></script>
+    <script src="/js/featherlight.min.js?1606827933"></script>
+    <script src="/js/highlight.pack.js?1606827933"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1603553936"></script>
-    <script src="/js/learn.js?1603553936"></script>
-    <script src="/js/hugo-learn.js?1603553936"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1606827933"></script>
+    <script src="/js/learn.js?1606827933"></script>
+    <script src="/js/hugo-learn.js?1606827933"></script>
 
-    <link href="/mermaid/mermaid.css?1603553936" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1603553936"></script>
+    <link href="/mermaid/mermaid.css?1606827933" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1606827933"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
