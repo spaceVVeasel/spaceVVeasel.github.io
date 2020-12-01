@@ -12,18 +12,18 @@
     <title>Inputs :: 宇宙イタチのメモ</title>
 
     
-    <link href="/css/nucleus.css?1606827933" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1606827933" rel="stylesheet">
-    <link href="/css/hybrid.css?1606827933" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1606827933" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1606827933" rel="stylesheet">
-    <link href="/css/auto-complete.css?1606827933" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1606827933" rel="stylesheet">
-    <link href="/css/theme.css?1606827933" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1606827933" rel="stylesheet">
+    <link href="/css/nucleus.css?1606837058" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1606837058" rel="stylesheet">
+    <link href="/css/hybrid.css?1606837058" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1606837058" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1606837058" rel="stylesheet">
+    <link href="/css/auto-complete.css?1606837058" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1606837058" rel="stylesheet">
+    <link href="/css/theme.css?1606837058" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1606837058" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1606827933"></script>
+    <script src="/js/jquery-3.3.1.min.js?1606837058"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -82,14 +82,14 @@ if (!doNotTrack) {
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1606827933"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1606827933"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1606837058"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1606837058"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/spacevveasel.github.io\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1606827933"></script>
+<script type="text/javascript" src="/js/search.js?1606837058"></script>
 
     
   </div>
@@ -583,6 +583,8 @@ if (!doNotTrack) {
         <li><a href="#host--string">host = &lt;string&gt;</a></li>
         <li><a href="#index--string">index = &lt;string&gt;</a></li>
         <li><a href="#sourcetype--string">sourcetype = &lt;string&gt;</a></li>
+        <li><a href="#crcsalt--string">crcSalt = &lt;string&gt;</a></li>
+        <li><a href="#initcrclength--integer">initCrcLength = &lt;integer&gt;</a></li>
       </ul>
     </li>
   </ul>
@@ -688,6 +690,48 @@ not sourcetype=&quot;foo&rdquo;.</li>
 <li>No default.</li>
 </ul>
 <p>sourcetypeの指定</p>
+<hr>
+<h3 id="crcsalt--string">crcSalt = &lt;string&gt;</h3>
+<ul>
+<li>Use this setting to force the input to consume files that have matching CRCs<br>
+(cyclic redundancy checks).
+<ul>
+<li>By default, the input only performs CRC checks against the first 256<br>
+bytes of a file. This behavior prevents the input from indexing the same<br>
+file twice, even though you might have renamed it, as with rolling log<br>
+files, for example. Because the CRC is based on only the first<br>
+few lines of the file, it is possible for legitimately different files<br>
+to have matching CRCs, particularly if they have identical headers.</li>
+</ul>
+</li>
+<li>If set, <!-- raw HTML omitted --> is added to the CRC.</li>
+<li>If set to the literal string &ldquo;<!-- raw HTML omitted -->&rdquo; (including the angle brackets), the<br>
+full directory path to the source file is added to the CRC. This ensures<br>
+that each file being monitored has a unique CRC. When &lsquo;crcSalt&rsquo; is invoked,<br>
+it is usually set to <!-- raw HTML omitted -->.</li>
+<li>Be cautious about using this setting with rolling log files; it could lead<br>
+to the log file being re-indexed after it has rolled.</li>
+<li>In many situations, &lsquo;initCrcLength&rsquo; can be used to achieve the same goals.</li>
+<li>Default: empty string</li>
+</ul>
+<p>ファイルの先頭256BytesをCRCチェックすることで、<br>
+ローテーションされたファイルなどの同一ファイルを2重取り込みしないようにする。<br>
+フィールドに&lt;SOURCE&gt;という文字列を記載した場合、ファイルパスを含めてCRCチェックを行う。<br>
+’initCrcLength’の値を用いて、CRCチェックに使うBytes数を変更できる。</p>
+<hr>
+<h3 id="initcrclength--integer">initCrcLength = &lt;integer&gt;</h3>
+<ul>
+<li>How much of a file, in bytes, that the input reads before trying to<br>
+identify whether it is a file that has already been seen. You might want to<br>
+adjust this if you have many files with common headers (comment headers,<br>
+long CSV headers, etc) and recurring filenames.</li>
+<li>Cannot be less than 256 or more than 1048576.</li>
+<li>CAUTION: Improper use of this setting causes data to be re-indexed. You<br>
+might want to consult with Splunk Support before adjusting this value - the<br>
+default is fine for most installations.</li>
+<li>Default: 256 (bytes)</li>
+</ul>
+<p>CRCチェックに用いるBytes数を指定する。</p>
 
 
 <footer class="footline">
@@ -1012,19 +1056,19 @@ not sourcetype=&quot;foo&rdquo;.</li>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1606827933"></script>
-    <script src="/js/perfect-scrollbar.min.js?1606827933"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1606827933"></script>
-    <script src="/js/jquery.sticky.js?1606827933"></script>
-    <script src="/js/featherlight.min.js?1606827933"></script>
-    <script src="/js/highlight.pack.js?1606827933"></script>
+    <script src="/js/clipboard.min.js?1606837058"></script>
+    <script src="/js/perfect-scrollbar.min.js?1606837058"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1606837058"></script>
+    <script src="/js/jquery.sticky.js?1606837058"></script>
+    <script src="/js/featherlight.min.js?1606837058"></script>
+    <script src="/js/highlight.pack.js?1606837058"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1606827933"></script>
-    <script src="/js/learn.js?1606827933"></script>
-    <script src="/js/hugo-learn.js?1606827933"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1606837058"></script>
+    <script src="/js/learn.js?1606837058"></script>
+    <script src="/js/hugo-learn.js?1606837058"></script>
 
-    <link href="/mermaid/mermaid.css?1606827933" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1606827933"></script>
+    <link href="/mermaid/mermaid.css?1606837058" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1606837058"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
